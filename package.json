@@ -1,0 +1,25 @@
+{
+  "name": "binks-melody",
+  "version": "1.0.0",
+  "description": "Music Playlist &amp; Visualizer Web App",
+  "main": "index.js",
+  "scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aphene101/Binks-Melody.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aphene101/Binks-Melody/issues"
+  },
+  "homepage": "https://github.com/Aphene101/Binks-Melody#readme",
+  "devDependencies": {
+    "vite": "^7.0.3"
+  }
+}
