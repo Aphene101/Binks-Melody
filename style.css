@@ -153,7 +153,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   gap: 3rem;
 }
 
@@ -163,8 +163,8 @@ body {
     align-items: center;
     background-color: #F1F1F1;
     color: #502753;
-    width: 20rem;
-    height: 10rem;
+    width: 27vw;
+    height: 23vh;
     border-radius: 15px;
     padding: 2.5rem 1rem;
     font-size: 2.5rem;
@@ -177,6 +177,124 @@ body {
   transform: scale(1.03);
   background-color: #C2CDB3;
   color: #F1F1F1;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    right: -300px;
+    width: 280px;
+    height: 83vh;
+    background-color: #C2CDB3;
+    margin-right: 20px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    border-radius: 15px;
+    border: solid #302E31 1px;
+}
+
+.sidebar.hidden {
+    right: -300px;
+}
+
+.sidebar:not(.hidden) {
+    right: 0;
+}
+
+.sidebar-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.logo-photo-sidebar {
+    width: 150px;
+    height: auto;
+    margin-bottom: 30px;
+    align-self: center;
+}
+
+.sidebar-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-grow: 1;
+}
+
+.sidebar-buttons div a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #C2CDB3;
+    font-size: 100px;
+    padding: 15px 25px;
+    border-radius: 6px;
+    background-color: #302E31;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sidebar-buttons div a p, .logout a p {
+    font-size: 20px;
+}
+
+div.playlists a {
+    color: #F1F1F1;
+    background-color: #502753;
+}
+
+div.playlists a:hover {
+    background-color: #431347;
+}
+
+.sidebar-buttons a:hover {
+    background-color: #1A171C;
+    transform: scale(1.03);
+}
+
+.sidebar-buttons p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.sidebar-buttons img {
+    width: 20px;
+    height: 20px;
+}
+
+.sidebar hr {
+    border: none;
+    height: 1px;
+    background-color: #302E31;
+    margin: 20px;
+}
+
+.logout a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #F1F1F1;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.logout p {
+    margin: 0;
+    font-size: 16px;
+    color: #302E31;
+}
+
+.logout img {
+    width: 20px;
+    height: 20px;
+}
+
+.logout a:hover {
+    transform: scale(1.03)
 }
 
 /* Responsive */
