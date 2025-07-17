@@ -25,6 +25,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+    min-width: 0;
 }
 
 .logo {
@@ -309,22 +310,16 @@ div.playlists a:hover {
     transform: scale(1.03)
 }
 
-/* Responsive */
-@media (max-width: 500px) {
-  .top-bar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+@media (max-width: 768px) {
+          .top-bar {
+            flex-direction: row;
+            text-align: center;
+            padding: 0.5rem;
+          }
 
-  .guest {
-    margin-top: 10px;
-  }
+            .logo, .user-icon {
+              margin-bottom: 0.5rem;
+              font-size: 1.2rem;
+          }
+      }
 
-  .welcome {
-    font-size: 2rem;
-  }
-
-  .login-box {
-    padding: 20px 15px;
-  }
-}

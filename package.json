@@ -4,10 +4,10 @@
   "description": "Music Playlist &amp; Visualizer Web App",
   "main": "index.js",
   "scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview"
-},
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Aphene101/Binks-Melody.git"
@@ -21,5 +21,8 @@
   "homepage": "https://github.com/Aphene101/Binks-Melody#readme",
   "devDependencies": {
     "vite": "^7.0.3"
+  },
+  "dependencies": {
+    "firebase": "^11.10.0"
   }
 }
