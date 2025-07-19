@@ -84,16 +84,18 @@ body {
   margin-bottom: 20px;
 }
 
+.login-box button {
+  border: 0;
+  font-size: 25px;
+}
+
 .login {
     color: #431347;
     text-decoration: none;
 }
 
 .login:hover{
-    color: #302E31;
-    background-color: #C2CDB3;
-    padding: 5px 20px;
-    border-radius: 15px;
+    font-size: 30px;
 }
 
 .login-box input {
