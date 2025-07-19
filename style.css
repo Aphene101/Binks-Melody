@@ -98,6 +98,10 @@ body {
     font-size: 30px;
 }
 
+.login:active{
+  font-size: 25px;
+}
+
 .login-box input {
   width: 100%;
   padding: 10px;
