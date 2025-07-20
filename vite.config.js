@@ -1,5 +1,14 @@
 import { defineConfig } from 'vite'
+import { resolve } from 'path';
 
 export default defineConfig({
-  base: '/Binks-Melody/',
-})
+    base: '/Binks-Melody/',
+    build: {
+        rollupOptions: {
+            input: {
+                main: resolve(__dirname, 'index.html'),
+                home: resolve(__dirname, 'home.html'),
+            },
+        },
+    },
+});

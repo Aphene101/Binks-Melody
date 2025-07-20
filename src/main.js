@@ -1,3 +1,5 @@
+import './login.js';
+
 document.addEventListener('DOMContentLoaded', function() {
     const guestButton = document.querySelector('.guest');
     const sidebar = document.querySelector('.sidebar');
