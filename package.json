@@ -4,6 +4,7 @@
   "description": "Music Playlist &amp; Visualizer Web App",
   "main": "index.js",
   "scripts": {
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/Aphene101/Binks-Melody#readme",
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "vite": "^7.0.3"
   },
   "dependencies": {
