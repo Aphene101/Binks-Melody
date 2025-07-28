@@ -221,6 +221,8 @@ body {
 
 .sidebar:not(.hidden) {
     right: 0;
+    top: 8%;
+    margin-top: 50px;
 }
 
 .sidebar-content {
