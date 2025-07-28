@@ -332,8 +332,8 @@ div.playlists a:hover {
 }
 
 .playlists-title {
-  font-size: clamp(0.5rem, 4vw, 3.5rem);
-  font-weight: 500;
+  font-size: clamp(0.5rem, 4vw, 4rem);
+  font-weight: 400;
   letter-spacing: 0.3rem;
   color: #F1F1F1;
 }
@@ -347,7 +347,7 @@ div.playlists a:hover {
   display: flex;
   align-items: center;
   padding: 20px 30px 25px 0;
-  gap: 20px;
+  gap: 30px;
   font-size: clamp(0.5rem, 4vw, 1.5rem);
   letter-spacing: 0.3rem;
 }
@@ -365,8 +365,8 @@ hr {
 .playlist div {
   display: block;
   flex-shrink: 0;
-  width: 55px;
-  height: 55px;
+  width: 60px;
+  height: 60px;
   background-color: #C2CDB3;
   border-radius: 10px;
 }
@@ -386,7 +386,7 @@ hr {
 }
 
 .add-icon img {
-  width: 55px;
+  width: 60px;
 }
 
 @media (max-width: 768px) {
