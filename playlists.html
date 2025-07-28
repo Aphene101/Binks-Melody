@@ -4,8 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playlists</title>
+    <link rel="stylesheet" href="/public/style.css"/>
 </head>
 <body>
-    
+    <header class="top-bar">
+        <div class="logo">
+            <a href="/home.html"><img class="logo-photo" src="/public/Media/Logo.png"></a>
+            <p>Bink’s Melody</p>
+        </div>
+        <div class="guest">
+            <span><img class="user-icon" src="/public/Media/User.svg"></span>
+            <p>Username</p>
+        </div>
+    </header>
+
+    <main class="playlists-page">
+        <h1 class="playlists-title">Playlists</h1>
+        <div class="playlists">
+            <div class="playlist">
+                <div></div>
+                <p>Playlist Name</p>
+                <span class="more-icon"><img src="Media/More-icon.svg"></span>
+            </div>
+            <hr>
+            <div class="playlist">
+                <div></div>
+                <p>Playlist Name</p>
+                <span class="more-icon"><img src="Media/More-icon.svg"></span>
+            </div>
+            <hr>
+            <div class="playlist">
+                <div></div>
+                <p>Playlist Name</p>
+                <span class="more-icon"><img src="Media/More-icon.svg"></span>
+            </div>
+            <hr>
+            <div class="new-playlist">
+                <span class="add-icon"><img src="Media/Add-icon.svg"></span>
+                <p>New Playlist</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>
