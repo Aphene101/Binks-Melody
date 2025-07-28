@@ -24,12 +24,11 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 export async function createPlaylist(userId, playlistName) {
-  const playlistRef = doc(db, "playlists", `${userId}_${playlistName}`);
+  const playlistRef = collection(db, "users", userId, "playlists");
 
   try {
     await setDoc(playlistRef, {
       name: playlistName,
-      userId: userId,
       songs: []
     });
 

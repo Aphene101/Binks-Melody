@@ -52,26 +52,8 @@
             </div>
         </aside>
         <h1 class="playlists-title">Playlists</h1>
-        <div class="playlists">
-            <div class="playlist">
-                <div></div>
-                <p>Playlist Name</p>
-                <span class="more-icon"><img src="/public/Media/More-icon.svg"></span>
-            </div>
-            <hr>
-            <div class="playlist">
-                <div></div>
-                <p>Playlist Name</p>
-                <span class="more-icon"><img src="/public/Media/More-icon.svg"></span>
-            </div>
-            <hr>
-            <div class="playlist">
-                <div></div>
-                <p>Playlist Name</p>
-                <span class="more-icon"><img src="/public/Media/More-icon.svg"></span>
-            </div>
-            <hr>
-            <div class="new-playlist">
+        <div class="playlists" id="playlistsContainer">
+            <div class="new-playlist" id="newPlaylistBtn">
                 <span class="add-icon"><img src="/public/Media/Add-icon.svg"></span>
                 <p>New Playlist</p>
             </div>
@@ -79,6 +61,7 @@
     </main>
 
     <div id="app"></div>
+    <script type="module" src="/src/playlists.js"></script>
     <script type="module" src="/src/main.js"></script>
 </body>
 </html>
