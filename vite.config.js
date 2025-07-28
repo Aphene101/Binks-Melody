@@ -8,6 +8,9 @@ export default defineConfig({
             input: {
                 main: resolve(__dirname, 'index.html'),
                 home: resolve(__dirname, 'home.html'),
+                playlists: resolve(__dirname, 'playlists.html'),
+                settings: resolve(__dirname, 'settings.html'),
+                account: resolve(__dirname, 'account.html')
             },
         },
     },
