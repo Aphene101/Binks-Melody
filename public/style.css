@@ -318,6 +318,10 @@ div.playlists a:hover {
     transform: scale(1.03)
 }
 
+/*Playlists Page*/
+
+
+
 @media (max-width: 768px) {
           .top-bar {
             flex-direction: row;
