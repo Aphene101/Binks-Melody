@@ -217,10 +217,14 @@ body {
 
 .sidebar.hidden {
     right: -300px;
+    top: 8%;
+    margin-top: 50px;
 }
 
 .sidebar:not(.hidden) {
     right: 0;
+    top: 8%;
+    margin-top: 50px;
 }
 
 .sidebar-content {
