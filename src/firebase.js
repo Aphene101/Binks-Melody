@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,3 +22,19 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+
+export async function createPlaylist(userId, playlistName) {
+  const playlistRef = doc(db, "playlists", `${userId}_${playlistName}`);
+
+  try {
+    await setDoc(playlistRef, {
+      name: playlistName,
+      userId: userId,
+      songs: []
+    });
+
+    console.log("Playlist created:", playlistName);
+  } catch (error) {
+    console.error("Error creating playlist:", error);
+  }
+}
