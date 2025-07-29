@@ -389,6 +389,31 @@ hr {
   width: 60px;
 }
 
+/*Add Playlist Styles*/
+
+.add-playlist {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: 2px solid #ccc;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  transition: bottom 0.3s ease;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.add-playlist.show {
+  bottom: 0;
+}
+
+.add-playlist-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 @media (max-width: 768px) {
           .top-bar {
             flex-direction: row;
