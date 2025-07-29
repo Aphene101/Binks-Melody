@@ -393,11 +393,13 @@ hr {
 
 .add-playlist {
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   bottom: -100%;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
-  border-top: 2px solid #ccc;
+  left: 50;
+  right: 50;
+  background-color: #F1F1F1;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   transition: bottom 0.3s ease;
   z-index: 1000;
@@ -411,7 +413,33 @@ hr {
 .add-playlist-content {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  gap: 7vh;
+  padding: 30px;
+}
+
+.add-playlist h2 {
+  color: #502753;
+  font-size: clamp(0.5rem, 5vw, 4rem);
+  text-align: center;
+}
+
+input#playlistNameInput {
+  width: 80vw;
+  height: 5vh;
+  font-size: clamp(0.5rem, 2vw, 2rem);
+  padding: 0.5vw 1vw;
+  border-radius: 15px;
+}
+
+button#createPlaylistBtn {
+  height: 5vh;
+  width: 15vw;
+  background-color: #502753;
+  color: #F1F1F1;
+  font-size: clamp(1rem, 2vw, 5rem);
+  padding: 0.5vw 1vw;
+  border-radius: 15px;
 }
 
 @media (max-width: 768px) {
