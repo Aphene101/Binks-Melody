@@ -219,9 +219,11 @@ body {
 /* Sidebar Styles */
 .sidebar {
     position: fixed;
-    right: -300px;
     width: 280px;
     height: 83vh;
+    right: -300px;
+    top: 8%;
+    margin-top: 50px;
     background-color: #C2CDB3;
     margin-right: 20px;
     transition: right 0.3s ease;
@@ -231,13 +233,7 @@ body {
     border: solid #302E31 1px;
 }
 
-.sidebar.hidden {
-    right: -300px;
-    top: 8%;
-    margin-top: 50px;
-}
-
-.sidebar:not(.hidden) {
+.sidebar.show {
     right: 0;
     top: 8%;
     margin-top: 50px;
@@ -421,10 +417,12 @@ hr {
   z-index: 1002;
   padding: 20px;
   border-radius: 15px 15px 0 0;
+  pointer-events: none;
 }
 
 .add-playlist.show {
   bottom: 0;
+  pointer-events: auto;
 }
 
 .add-playlist-content {
