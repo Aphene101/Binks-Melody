@@ -435,10 +435,12 @@ input#playlistNameInput {
   border: 0;
   background-color: #302E31;
   color: #C2CDB3;
+  letter-spacing: 0.3rem;
 }
 
 input#playlistNameInput::placeholder {
   color: rgba(194,205,179,0.6);
+  letter-spacing: 0.3rem;
 }
 
 button#createPlaylistBtn {
