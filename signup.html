@@ -21,14 +21,22 @@
     <main class="sign-up-page">
         <h1 class="welcome">Welcome</h1>
         <div class="sign-up-box">
-            <h2><button class="sign-up" id="sign-up-button" href="index.html">Sign Up</button></h2>
-            <input type="text" id="sign-up-username" placeholder="Username" />
-            <input type="email" id="sign-up-email" placeholder="Email" />
-            <input type="password" id="login-password" placeholder="Password" />
+            <h2>
+            <button type="submit" id="sign-up-button" form="sign-up-form" class="sign-up">
+                Sign Up
+            </button>
+            </h2>
+            <form id="sign-up-form">
+                <input type="text" id="sign-up-username" placeholder="Username" required />
+                <input type="email" id="sign-up-email" placeholder="Email" required />
+                <input type="password" id="sign-up-password" placeholder="Password" required />
+            </form>
+            <p id="sign-up-error" class="error-message"></p>
         </div>
     </main>
 
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/signup.js"></script>
 </body>
 </html>
