@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-  <script type="module" crossorigin src="/Binks-Melody/assets/main-CHgp6fXb.js"></script>
+    <title>Sign-Up</title>
+  <script type="module" crossorigin src="/Binks-Melody/assets/signup-CUtMZwns.js"></script>
+  <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/main-CHgp6fXb.js">
   <link rel="stylesheet" crossorigin href="/Binks-Melody/assets/main-B68Q51wE.css">
 </head>
 <body>
@@ -19,20 +20,23 @@
         </div>
     </header>
 
-    <main class="login-page">
+    <main class="sign-up-page">
         <h1 class="welcome">Welcome</h1>
-        <div class="login-box">
-            <h2><button class="login" id="login-button" href="home.html">Login</button></h2>
-            <input type="email" id="login-email" placeholder="Email" />
-            <input type="password" id="login-password" placeholder="Password" />
-            <div id="login-error" style="color:red; margin-top:10px;"></div>
-            <div class="links">
-                <a href="#">Forgot Password?</a>
-                <a href="/signup.html">Sign-up</a>
-            </div>
+        <div class="sign-up-box">
+            <h2>
+            <button type="submit" id="sign-up-button" form="sign-up-form" class="sign-up">
+                Sign Up
+            </button>
+            </h2>
+            <form id="sign-up-form">
+                <input type="text" id="sign-up-username" placeholder="Username" required />
+                <input type="email" id="sign-up-email" placeholder="Email" required />
+                <input type="password" id="sign-up-password" placeholder="Password" required />
+            </form>
+            <p id="sign-up-error" class="error-message"></p>
         </div>
     </main>
 
-    <div id="app"></div>
+    <div id="app"></div>
 </body>
 </html>
