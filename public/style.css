@@ -388,9 +388,10 @@ hr {
 }
 
 .more-icon {
-  width: 100%;
-  align-content: flex-end;
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
+  cursor: pointer;
 }
 
 .more-icon img {

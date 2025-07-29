@@ -28,7 +28,9 @@ async function renderPlaylists() {
     playlistsContainer.insertBefore(playlistDiv, newPlaylistBtn);
     playlistsContainer.insertBefore(hr, newPlaylistBtn);
 
-    playlistDiv.addEventListener('click', () => {
+    playlistDiv.addEventListener('click', (event) => {
+      if (event.target.closest('.more-icon')) return;
+
       localStorage.setItem('currentPlaylistId', doc.id);
       window.location.href = 'playlist.html';
     });
