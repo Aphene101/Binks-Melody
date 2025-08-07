@@ -6,16 +6,24 @@ import { getApp } from 'firebase/app';
 const app = getApp();
 const db = getFirestore(app);
 
-function getFriendlyErrorMessage(errorCode) {
-    switch (errorCode) {
+function getFriendlyErrorMessage(error) {
+    const code = error.code || error.message;
+
+    switch (code) {
         case 'auth/invalid-email':
             return 'Please enter a valid email address.';
         case 'auth/user-not-found':
             return 'No account found with this email or username.';
         case 'auth/invalid-credential':
-            return 'One of your details are incorrect.';
+            return 'Email / Password is incorrect.';
+        case 'auth/user-disabled':
+            return 'This account has been disabled.';
+        case 'auth/email-not-verified':
+            return 'Please verify your email before logging in.'
+        case 'auth/too-many-requests':
+            return 'Too many failed attempts. Please try again later.';
         default:
-            return 'Something went wrong. Please try again.';
+            return error.message || 'Something went wrong. Please try again.';
     }
 }
 
@@ -57,18 +65,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!user.emailVerified) {
                 await signOut(auth);
-                throw new Error('auth/email-not-verified');
+                throw { code: 'auth/email-not-verified' };
             }
 
-            console.log('Logged in as:', userCredential.user);
             errorBox.textContent = '';
 
             window.location.href = './home.html';
         } catch (err) {
             console.error('Login error:', err);
-            const friendly = err.code === 'auth/email-not-verified'
-                ? 'Please verify your email before logging in.'
-                : getFriendlyErrorMessage(err.code);
+            const friendly = getFriendlyErrorMessage(err);
             errorBox.textContent = friendly;
         }
     });
