@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, setPersistence, browserSessionPersistence } from "firebase/auth";
 import { getFirestore, doc, setDoc, collection } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,8 +19,17 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-export const auth = getAuth(app);
+setPersistence(auth, browserSessionPersistence)
+  .then(() => {
+    console.log('Session persistence set');
+  })
+  .catch((error) => {
+    console.error('Failed to set persistence:', error);
+  });
+
+export { auth };
 export const db = getFirestore(app);
 
 export async function createStarterPlaylist(userId) {

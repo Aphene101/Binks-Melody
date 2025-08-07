@@ -1,7 +1,10 @@
 import './login.js';
-import { auth, createPlaylist } from "./firebase.js";
+import { auth, createPlaylist, db } from "./firebase.js";
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 document.addEventListener('DOMContentLoaded', function() {
+
     const guestButton = document.querySelector('.guest');
     const sidebar = document.querySelector('.sidebar');
     const newPlaylistBtn = document.getElementById("newPlaylistBtn");
@@ -58,4 +61,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
         location.reload();
     });
+});
+
+const usernameDisplay = document.querySelector('.guest p');
+
+onAuthStateChanged(auth, async (user) => {
+    usernameDisplay.textContent = 'Guest';
+
+    if (user) {
+        try {
+
+            const q = query(
+            collection(db, 'usernames'),
+            where('userId', '==', user.uid)
+        );
+
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+            const usernameDoc = querySnapshot.docs[0];
+            const username = usernameDoc.id;
+
+            usernameDisplay.textContent = username;
+        } else {
+            console.warn('No username found for user UID:', user.uid);
+            usernameDisplay.textContent = 'Guest';
+        }
+
+        } catch (error) {
+            console.error('Error fetching username:', error);
+            usernameDisplay.textContent = 'Guest';
+        }
+    } else {
+        usernameDisplay.textContent = 'Guest';
+        console.log("No user is logged in.");
+    }
+});
+
+document.querySelector(".logout").addEventListener("click", async () => {
+    try {
+        await signOut(auth);
+        document.querySelector(".guest p").textContent = "Guest";
+    } catch (error) {
+        console.error("Error signing out:", error);
+    }
 });
