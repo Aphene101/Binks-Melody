@@ -1,5 +1,5 @@
 import { auth } from './firebase.js';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { getApp } from 'firebase/app';
 
@@ -53,6 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = await resolveToEmail(inputVal);
 
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            if (!user.emailVerified) {
+                await signOut(auth);
+                throw new Error('auth/email-not-verified');
+            }
 
             console.log('Logged in as:', userCredential.user);
             errorBox.textContent = '';
@@ -60,7 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = './home.html';
         } catch (err) {
             console.error('Login error:', err);
-            const friendly = getFriendlyErrorMessage(err.code);
+            const friendly = err.code === 'auth/email-not-verified'
+                ? 'Please verify your email before logging in.'
+                : getFriendlyErrorMessage(err.code);
             errorBox.textContent = friendly;
         }
     });

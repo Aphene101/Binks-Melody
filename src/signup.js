@@ -1,5 +1,5 @@
 import { auth, db, createStarterPlaylist } from './firebase.js';
-import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signOut, sendEmailVerification } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const user = userCredential.user;
       const userId = user.uid;
 
+      await sendEmailVerification(user);
+
       await setDoc(doc(db, "usernames", username), {
         email: email,
         userId: userId
@@ -36,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
       await createStarterPlaylist(userId);
 
       await signOut(auth);
+      alert("Account created! Please verify your email before logging in.");
+
       window.location.href = "./index.html";
 
     } catch (err) {
