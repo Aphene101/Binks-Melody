@@ -1,6 +1,6 @@
 import { auth, db, createStarterPlaylist } from './firebase.js';
 import { createUserWithEmailAndPassword, signOut, sendEmailVerification } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('sign-up-form');
@@ -21,12 +21,20 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    const usernameRef = doc(db, "usernames", username);
+    const usernameSnap = await getDoc(usernameRef);
+
+    if (usernameSnap.exists()) {
+      errorBox.textContent = "Username is already taken.";
+      return;
+    }
+
+    let userCredential;
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+      userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       const userId = user.uid;
-
-      await sendEmailVerification(user);
 
       await setDoc(doc(db, "usernames", username), {
         email: email,
@@ -34,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       await setDoc(doc(db, "users", userId), {});
+
+      await sendEmailVerification(user);
 
       await createStarterPlaylist(userId);
 
@@ -44,7 +54,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } catch (err) {
       console.error("Signup error:", err);
-      errorBox.textContent = err.message || "Signup failed.";
+
+      if (userCredential && userCredential.user) {
+        try {
+          await deleteUser(userCredential.user);
+          console.log("Deleted partially registered user due to error.");
+        } catch (cleanupErr) {
+          console.warn("Could not delete user after failed signup:", cleanupErr);
+        }
+      }
+
+      if (err.code === "auth/email-already-in-use") {
+        errorBox.textContent = "This email is already registered.";
+      } else {
+        errorBox.textContent = err.message || "Signup failed.";
+      }
     }
   });
 });
