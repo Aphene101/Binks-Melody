@@ -38,8 +38,10 @@ body {
 }
 
 .logo-photo {
-    height: 70px;
-    width: auto;
+  height: 70px;
+  width: auto;
+  user-select: none;
+  cursor: pointer;
 }
 
 .guest {
@@ -51,8 +53,10 @@ body {
 }
 
 .user-icon {
-    height: 40px;
-    width: auto;
+  height: 40px;
+  width: auto;
+  user-select: none;
+  cursor: pointer;
 }
 
 /* Main Login & Sign-up Area */
@@ -87,15 +91,19 @@ body {
 .login-box button, .sign-up-box button {
   border: 0;
   font-size: 25px;
+  user-select: none;
+  cursor: pointer;
 }
 
 .login, .sign-up {
-    color: #431347;
-    text-decoration: none;
+  color: #431347;
+  text-decoration: none;
+  user-select: none;
+  cursor: pointer;
 }
 
 .login:hover, .sign-up:hover {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .login:active, .sign-up:active {
@@ -120,6 +128,7 @@ body {
 .links {
   text-align: center;
   margin-top: 10px;
+  cursor: pointer;
 }
 
 .links a {
@@ -178,20 +187,22 @@ body {
 }
 
 .card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: #F1F1F1;
-    color: #502753;
-    width: 20vw;
-    height: auto;
-    border-radius: 15px;
-    padding: 2.5rem clamp(4rem, 4vw, 2.5rem);
-    font-size: clamp(0.5rem, 4vw, 2.5rem);
-    font-weight: 1;
-    font-family: 'Open Sans', sans-serif;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #F1F1F1;
+  color: #502753;
+  width: 20vw;
+  height: auto;
+  border-radius: 15px;
+  padding: 2.5rem clamp(4rem, 4vw, 2.5rem);
+  font-size: clamp(0.5rem, 4vw, 2.5rem);
+  font-weight: 1;
+  font-family: 'Open Sans', sans-serif;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -218,120 +229,129 @@ body {
 
 /* Sidebar Styles */
 .sidebar {
-    position: fixed;
-    width: 280px;
-    height: 83vh;
-    right: -300px;
-    top: 8%;
-    margin-top: 50px;
-    background-color: #C2CDB3;
-    margin-right: 20px;
-    transition: right 0.3s ease;
-    z-index: 1001;
-    overflow-y: auto;
-    border-radius: 15px;
-    border: solid #302E31 1px;
+  position: fixed;
+  width: 280px;
+  height: 83vh;
+  right: -300px;
+  top: 8%;
+  margin-top: 50px;
+  background-color: #C2CDB3;
+  margin-right: 20px;
+  transition: right 0.3s ease;
+  z-index: 1001;
+  overflow-y: auto;
+  border-radius: 15px;
+  border: solid #302E31 1px;
 }
 
 .sidebar.show {
-    right: 0;
-    top: 8%;
-    margin-top: 50px;
+  right: 0;
+  top: 8%;
+  margin-top: 50px;
 }
 
 .sidebar-content {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .logo-photo-sidebar {
-    width: 150px;
-    height: auto;
-    margin-bottom: 30px;
-    align-self: center;
+  width: 150px;
+  height: auto;
+  margin-bottom: 30px;
+  align-self: center;
+  user-select: none;
 }
 
 .sidebar-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-grow: 1;
 }
 
 .sidebar-buttons div a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-decoration: none;
-    color: #C2CDB3;
-    font-size: 100px;
-    padding: 15px 25px;
-    border-radius: 6px;
-    background-color: #302E31;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: #C2CDB3;
+  font-size: 100px;
+  padding: 15px 25px;
+  border-radius: 6px;
+  background-color: #302E31;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+  cursor: pointer;
 }
 
 .sidebar-buttons div a p, .logout a p {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 div.playlists a {
-    color: #F1F1F1;
-    background-color: #502753;
+  color: #F1F1F1;
+  background-color: #502753;
+  user-select: none;
+  cursor: pointer;
 }
 
 div.playlists a:hover {
-    background-color: #431347;
+  background-color: #431347;
 }
 
 .sidebar-buttons a:hover {
-    background-color: #1A171C;
-    transform: scale(1.03);
+  background-color: #1A171C;
+  transform: scale(1.03);
 }
 
 .sidebar-buttons p {
-    margin: 0;
-    font-size: 16px;
+  margin: 0;
+  font-size: 16px;
 }
 
 .sidebar-buttons img {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
+  user-select: none;
+  cursor: pointer;
 }
 
 .sidebar hr {
-    border: none;
-    height: 1px;
-    background-color: #302E31;
-    margin: 20px;
+  border: none;
+  height: 1px;
+  background-color: #302E31;
+  margin: 20px;
 }
 
 .logout a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-decoration: none;
-    color: #F1F1F1;
-    padding: 10px 20px;
-    border-radius: 6px;
-    transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: #F1F1F1;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  user-select: none;
+  cursor: pointer;
 }
 
 .logout p {
-    margin: 0;
-    font-size: 16px;
-    color: #302E31;
+  margin: 0;
+  font-size: 16px;
+  color: #302E31;
 }
 
 .logout img {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .logout a:hover {
-    transform: scale(1.03)
+  transform: scale(1.03)
 }
 
 /*Playlists Page*/
@@ -362,6 +382,8 @@ div.playlists a:hover {
   gap: 30px;
   font-size: clamp(0.5rem, 4vw, 1.5rem);
   letter-spacing: 0.3rem;
+  user-select: none;
+  cursor: pointer;
 }
 
 hr {
@@ -396,10 +418,14 @@ hr {
 
 .more-icon img {
   height: 30px;
+  user-select: none;
+  cursor: pointer;
 }
 
 .add-icon img {
   width: 60px;
+  user-select: none;
+  cursor: pointer;
 }
 
 /*Add Playlist Styles*/
@@ -467,18 +493,20 @@ button#createPlaylistBtn {
   padding: 1vw 2vw;
   border-radius: 15px;
   border: 0;
+  user-select: none;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
-          .top-bar {
-            flex-direction: row;
-            text-align: center;
-            padding: 0.5rem;
-          }
+  .top-bar {
+    flex-direction: row;
+    text-align: center;
+    padding: 0.5rem;
+  }
 
-            .logo, .user-icon {
-              margin-bottom: 0.5rem;
-              font-size: 1.2rem;
-          }
-      }
+  .logo, .user-icon {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+}
 
