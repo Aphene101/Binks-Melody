@@ -19,18 +19,19 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 setPersistence(auth, browserSessionPersistence)
   .then(() => {
-    console.log('Session persistence set');
+    console.log("Session persistence set");
   })
-  .catch((error) => {
-    console.error('Failed to set persistence:', error);
+  .catch((err) => {
+    console.error("Persistence error:", err);
   });
 
-export { auth };
-export const db = getFirestore(app);
+export { auth, db };
 
 export async function createStarterPlaylist(userId) {
   const ref = doc(collection(db, "users", userId, "playlists"));
