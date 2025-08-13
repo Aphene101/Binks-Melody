@@ -1,4 +1,4 @@
-import"./firebase-BjFFdFpZ.js";import"./main-DTeVVOWb.js";const d="804bfeee";async function u(s){const e=`https://api.jamendo.com/v3.0/tracks/?client_id=${d}&format=json&limit=10&search=${encodeURIComponent(s)}`;return(await(await fetch(e)).json()).results}function m(s){const e=document.querySelector(".search-results");e.innerHTML="",s.forEach(t=>{const n=document.createElement("div"),a=document.createElement("div");a.classList.add("song-item"),a.innerHTML=`
+import"./firebase-DhwcWpw7.js";import"./main-BfolFI2a.js";const d="804bfeee";async function u(s){const e=`https://api.jamendo.com/v3.0/tracks/?client_id=${d}&format=json&limit=10&search=${encodeURIComponent(s)}`;return(await(await fetch(e)).json()).results}function m(s){const e=document.querySelector(".search-results");e.innerHTML="",s.forEach(t=>{const n=document.createElement("div"),a=document.createElement("div");a.classList.add("song-item"),a.innerHTML=`
         <div class="song-left">
             <div class="song-thumb">
             <img src="${t.album_image}" alt="Album Art">

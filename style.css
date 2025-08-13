@@ -143,7 +143,7 @@ body {
   display: flex;
   width: 100%;
   max-width: 600px;
-  margin: 1.5rem auto 3rem auto;
+  margin: 1.5rem auto;
   position: relative;
   background-color: #F1F1F1;
   padding: 10px 20px;
