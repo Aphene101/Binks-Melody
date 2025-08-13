@@ -8,5 +8,5 @@ import"./firebase-BjFFdFpZ.js";import"./main-DTeVVOWb.js";const d="804bfeee";asy
             <span class="song-artist">${t.artist_name}</span>
             </div>
         </div>
-        <button class="song-menu" onclick="playTrack('${t.audio}')"><img class="more-icon" src="/Media/More-icon.svg"></button>
+        <button class="song-menu" onclick="playTrack('${t.audio}')"><img class="more-icon" src="/public/Media/More-icon.svg"></button>
         `,n.appendChild(a);const c=document.createElement("hr");c.classList.add("song-separator"),n.appendChild(c),e.appendChild(n)})}document.querySelector(".search-input").addEventListener("input",async s=>{const e=s.target.value.trim();if(e.length>2){const t=await u(e);m(t)}else document.querySelector(".search-results").innerHTML=""});const o=document.querySelector(".search-input"),r=document.getElementById("search-results"),i=document.querySelector(".section-title"),l=document.querySelector(".grid-container");o.addEventListener("input",()=>{o.value.trim()?(i.style.display="none",l.style.display="none",r.style.display="flex"):(i.style.display="flex",l.style.display="flex",r.style.display="none")});
