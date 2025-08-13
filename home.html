@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-  <script type="module" crossorigin src="/Binks-Melody/assets/firebase-Ch6rzqYa.js"></script>
-  <script type="module" crossorigin src="/Binks-Melody/assets/main-Bdou0BkC.js"></script>
-  <link rel="stylesheet" crossorigin href="/Binks-Melody/assets/firebase-SVkumTIc.css">
+  <script type="module" crossorigin src="/Binks-Melody/assets/home-hponVM1E.js"></script>
+  <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/firebase-BjFFdFpZ.js">
+  <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/main-DTeVVOWb.js">
+  <link rel="stylesheet" crossorigin href="/Binks-Melody/assets/firebase-DMuZl6Ef.css">
 </head>
 <body>
     <header class="top-bar">
@@ -55,7 +56,10 @@
         </aside>
         <div class="search-container">
             <input type="text" placeholder="Search Song" class="search-input">
+            <img class="search-icon" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cpath%20fill='%23502753'%20d='M9.5%2016q-2.725%200-4.612-1.888T3%209.5t1.888-4.612T9.5%203t4.613%201.888T16%209.5q0%201.1-.35%202.075T14.7%2013.3l5.6%205.6q.275.275.275.7t-.275.7t-.7.275t-.7-.275l-5.6-5.6q-.75.6-1.725.95T9.5%2016m0-2q1.875%200%203.188-1.312T14%209.5t-1.312-3.187T9.5%205T6.313%206.313T5%209.5t1.313%203.188T9.5%2014'/%3e%3c/svg%3e">
         </div>
+        <div class="search-results"></div>
+
         <h2 class="section-title">Popular</h2>
         <div class="grid-container">
             <div class="card premade">Premade Playlist</div>
@@ -67,6 +71,6 @@
         </div>
     </main>
 
-    <div id="app"></div>
+    <div id="app"></div>
 </body>
 </html>
