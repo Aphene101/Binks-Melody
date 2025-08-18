@@ -27,11 +27,14 @@ const nextBtn = document.getElementById('p-next');
 
 const playIcon = document.getElementById('play-icon');
 
+let currentPlaylist = [];
+let currentIndex = -1;
+
 // Display search results
 function displayResults(tracks) {
     resultsContainer.innerHTML = '';
 
-    tracks.forEach(track => {
+    tracks.forEach((track, index) => {
         const trackWrapper = document.createElement('div');
 
         const trackDiv = document.createElement('div');
@@ -52,8 +55,9 @@ function displayResults(tracks) {
         </button>
         `;
 
-        const playButton = trackDiv.querySelector('.song-left');
-        playButton.addEventListener('click', () => playTrack(track.audio, track));
+        trackDiv.querySelector(".song-left").addEventListener("click", () => {
+            playTrack(track.audio, track, index, tracks);
+        });
 
         trackWrapper.appendChild(trackDiv);
 
@@ -66,7 +70,7 @@ function displayResults(tracks) {
 }
 
 // Play selected track
-function playTrack(audioUrl, track) {
+function playTrack(audioUrl, track, index, playlist) {
 
     songTitle.textContent = track.name;
     songArtist.textContent = track.artist_name;
@@ -79,9 +83,10 @@ function playTrack(audioUrl, track) {
     audioPlayer.src = audioUrl;
     audioPlayer.load();
 
-    audioPlayer.addEventListener('loadedmetadata', () => {
-        durationEl.textContent = formatTime(audioPlayer.duration);
-    });
+    currentPlaylist = playlist;
+    currentIndex = index;
+
+    seekEl.value = 0;
 
     audioPlayer.addEventListener('canplay', function onCanPlay() {
         audioPlayer.removeEventListener('canplay', onCanPlay);
@@ -90,6 +95,10 @@ function playTrack(audioUrl, track) {
         });
     });
 }
+
+audioPlayer.addEventListener('loadedmetadata', () => {
+    durationEl.textContent = formatTime(audioPlayer.duration);
+});
 
 // Update progress bar as song plays
 audioPlayer.addEventListener('timeupdate', () => {
@@ -126,6 +135,23 @@ function formatTime(seconds) {
     const s = Math.floor((seconds || 0) % 60);
     return `${m}:${s < 10 ? '0' : ''}${s}`;
 }
+
+// Previous and Next Buttons
+prevBtn.addEventListener("click", () => {
+    if (currentPlaylist.length > 0) {
+        currentIndex = (currentIndex - 1 + currentPlaylist.length) % currentPlaylist.length;
+        const track = currentPlaylist[currentIndex];
+        playTrack(track.audio, track, currentIndex, currentPlaylist);
+    }
+});
+
+nextBtn.addEventListener("click", () => {
+    if (currentPlaylist.length > 0) {
+        currentIndex = (currentIndex + 1) % currentPlaylist.length;
+        const track = currentPlaylist[currentIndex];
+        playTrack(track.audio, track, currentIndex, currentPlaylist);
+    }
+});
 
 // Listen for search input
 searchInput.addEventListener('input', async (e) => {
