@@ -512,6 +512,7 @@ button#createPlaylistBtn {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  user-select: none;
 }
 
 .song-info {
@@ -523,11 +524,13 @@ button#createPlaylistBtn {
   font-weight: 600;
   color: #F1F1F1;
   font-size: 1.2rem;
+  user-select: none;
 }
 
 .song-artist {
   font-size: 1rem;
   color: #C2CDB3;
+  user-select: none;
 }
 
 .song-menu {
@@ -537,6 +540,7 @@ button#createPlaylistBtn {
   font-size: 1.8rem;
   cursor: pointer;
   margin-left: auto;
+  user-select: none;
 }
 
 .song-separator {
@@ -614,6 +618,7 @@ button#createPlaylistBtn {
   background:#302E31;
   border:1px solid rgba(241, 241, 241, 0.4);
   margin-right: 20px;
+  user-select: none;
 }
 
 #p-title{
@@ -621,12 +626,14 @@ button#createPlaylistBtn {
   font-size:48px;
   font-weight: 400;
   letter-spacing:.5px;
+  user-select: none;
 }
 
 #p-artist{
-  margin:2px 0 0;
+  margin:1px 0 0;
   font-size: 26px;
   color:#C2CDB3;
+  user-select: none;
 }
 
 .timeline{
@@ -637,6 +644,7 @@ button#createPlaylistBtn {
   margin:30px 0;
   color:#C2CDB3;
   font-size:12px;
+  user-select: none;
 }
 #p-seek{
   -webkit-appearance:none;
@@ -682,6 +690,7 @@ button#createPlaylistBtn {
   line-height:1;
   padding:6px 10px;
   cursor:pointer;
+  user-select: none;
 }
 
 .icon-btn .add-song {
@@ -692,6 +701,9 @@ button#createPlaylistBtn {
   background:none;
   border: 0;
   cursor:pointer;
+  height: 10vh;
+  width: 5vw;
+  user-select: none;
 }
 
 .icon-btn img {
@@ -700,6 +712,18 @@ button#createPlaylistBtn {
 
 .pill-btn img {
   width: 70px;
+}
+
+.pill-btn img:active {
+  width: 80px;
+}
+
+.icon-btn img:active {
+  width: 40px;
+}
+
+.icon-btn .add-song:active {
+  width: 65px;
 }
 
 .icon-btn img:active, .pill-btn img:active {
