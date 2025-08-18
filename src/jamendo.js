@@ -107,11 +107,11 @@ if (playBtn) {
   playBtn.addEventListener('click', () => {
     if (audioPlayer.paused) {
       audioPlayer.play();
-      playIcon.src = 'public/Media/Pause-icon.svg';
+      playIcon.src = `${import.meta.env.BASE_URL}Media/Pause-icon.svg`;
       playIcon.alt = 'Pause';
     } else {
       audioPlayer.pause();
-      playIcon.src = 'public/Media/Play-icon.svg';
+      playIcon.src = `${import.meta.env.BASE_URL}Media/Play-icon.svg`;
       playIcon.alt = 'Play';
     }
   });

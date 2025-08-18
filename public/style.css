@@ -692,6 +692,8 @@ button#createPlaylistBtn {
   background:none;
   border: 0;
   cursor:pointer;
+  height: 10vh;
+  width: 5vw;
 }
 
 .icon-btn img {
@@ -700,6 +702,18 @@ button#createPlaylistBtn {
 
 .pill-btn img {
   width: 70px;
+}
+
+.pill-btn img:active {
+  width: 80px;
+}
+
+.icon-btn img:active {
+  width: 40px;
+}
+
+.icon-btn .add-song:active {
+  width: 65px;
 }
 
 .icon-btn img:active, .pill-btn img:active {
