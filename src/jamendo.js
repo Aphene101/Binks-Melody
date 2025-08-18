@@ -25,6 +25,8 @@ const playBtn = document.getElementById('p-play');
 const prevBtn = document.getElementById('p-prev');
 const nextBtn = document.getElementById('p-next');
 
+const playIcon = document.getElementById('play-icon');
+
 // Display search results
 function displayResults(tracks) {
     resultsContainer.innerHTML = '';
@@ -70,6 +72,7 @@ function playTrack(audioUrl, track) {
     songTitle.textContent = track.name;
     songArtist.textContent = track.artist_name;
     songThumb.src = track.album_image;
+    playIcon.src = `${import.meta.env.BASE_URL}Media/Pause-icon.svg`;
 
     document.getElementById('player').classList.add('open');
 
@@ -99,8 +102,6 @@ seekEl.addEventListener('input', () => {
     if (!audioPlayer.duration) return;
     audioPlayer.currentTime = (seekEl.value / 100) * audioPlayer.duration;
 });
-
-const playIcon = document.getElementById('play-icon');
 
 if (playBtn) {
   playBtn.addEventListener('click', () => {
