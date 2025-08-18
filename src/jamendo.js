@@ -13,7 +13,6 @@ const sectionTitle = document.querySelector('.section-title');
 const gridContainer = document.querySelector('.grid-container');
 const resultsContainer = document.getElementById('search-results');
 
-const playerUI = document.querySelector('.player');
 const audioPlayer = document.getElementById('player-audio');
 const songTitle = document.getElementById('p-title');
 const songArtist = document.getElementById('p-artist');
@@ -51,7 +50,7 @@ function displayResults(tracks) {
         </button>
         `;
 
-        const playButton = trackDiv.querySelector('.song-menu');
+        const playButton = trackDiv.querySelector('.song-left');
         playButton.addEventListener('click', () => playTrack(track.audio, track));
 
         trackWrapper.appendChild(trackDiv);
