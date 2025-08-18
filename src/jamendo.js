@@ -66,7 +66,6 @@ function displayResults(tracks) {
 }
 
 // Play selected track
-let isPlaying = false;
 function playTrack(audioUrl, track) {
 
     songTitle.textContent = track.name;
@@ -79,6 +78,10 @@ function playTrack(audioUrl, track) {
     audioPlayer.pause();
     audioPlayer.src = audioUrl;
     audioPlayer.load();
+
+    audioPlayer.addEventListener('loadedmetadata', () => {
+        durationEl.textContent = formatTime(audioPlayer.duration);
+    });
 
     audioPlayer.addEventListener('canplay', function onCanPlay() {
         audioPlayer.removeEventListener('canplay', onCanPlay);
