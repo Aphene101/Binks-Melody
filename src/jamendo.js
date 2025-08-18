@@ -109,6 +109,14 @@ audioPlayer.addEventListener('timeupdate', () => {
     }
 });
 
+audioPlayer.addEventListener('ended', () => {
+    if (currentPlaylist.length > 0) {
+        currentIndex = (currentIndex + 1) % currentPlaylist.length;
+        const nextTrack = currentPlaylist[currentIndex];
+        playTrack(nextTrack.audio, nextTrack, currentIndex, currentPlaylist);
+    }
+});
+
 // Seek when user drags progress bar
 seekEl.addEventListener('input', () => {
     if (!audioPlayer.duration) return;
