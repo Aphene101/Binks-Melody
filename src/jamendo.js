@@ -252,3 +252,19 @@ function drawVisualizer() {
 }
 
 drawVisualizer();
+
+const player = document.getElementById('player');
+const toggleBtn = document.getElementById('player-toggle');
+
+toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    player.classList.toggle('minimized');
+});
+
+player.addEventListener('click', (e) => {
+  if (!player.classList.contains('minimized')) return;
+
+  if (!playBtn.contains(e.target)) {
+    player.classList.remove('minimized');
+  }
+});

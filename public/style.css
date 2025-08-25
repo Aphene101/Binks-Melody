@@ -577,7 +577,7 @@ button#createPlaylistBtn {
 
 .player.open{
   transform: translateY(0);
-  padding-top: 80px;
+  padding-top: 50px;
 }
 
 .player-visual{
@@ -721,9 +721,75 @@ button#createPlaylistBtn {
 
 #visualizer {
   width: 100%;
-  height: 350px;
+  height: 300px;
   display: block;
   background: transparent;
+}
+
+.player-toggle {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  top: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 60;
+}
+
+.player-toggle img {
+  width: 50px;
+  height: 50px;
+}
+
+.player.minimized {
+  position: fixed;
+  height: 90px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 10px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #353535;
+  transform: translateY(0) !important;
+}
+
+.player.minimized #visualizer,
+.player.minimized .timeline,
+.player.minimized .player-toggle,
+.player.minimized #p-add,
+.player.minimized #p-prev,
+.player.minimized #p-next {
+  display: none;
+}
+
+.player.minimized .player-header {
+  gap: 10px;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.player.minimized .player-header .meta {
+  gap: 10px;
+}
+
+.player.minimized #p-title {
+  font-size: 20px;
+}
+
+.player.minimized #p-artist {
+  font-size: 12px;
+}
+
+.player.minimized .pill-btn img {
+  width: 50px;
+}
+
+.player.minimized #p-cover {
+  width: 50px;
+  height: 50px;
 }
 
 @media (max-width: 768px) {
