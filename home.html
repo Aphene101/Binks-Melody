@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-  <script type="module" crossorigin src="/Binks-Melody/assets/home-pjGN_BEo.js"></script>
-  <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/firebase-DYIETtGO.js">
-  <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/main-Bc4OYtiy.js">
-  <link rel="stylesheet" crossorigin href="/Binks-Melody/assets/firebase-xDwkMHed.css">
+  <script type="module" crossorigin src="/Binks-Melody/assets/home-D-APbHS4.js"></script>
+  <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/firebase-DtfHErYr.js">
+  <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/main-Frh6MUDs.js">
+  <link rel="stylesheet" crossorigin href="/Binks-Melody/assets/firebase-073OBBB5.css">
 </head>
 <body>
     <header class="top-bar">
         <div class="logo">
-            <img class="logo-photo" src="/Binks-Melody/assets/Logo-C5T0sY-W.png">
+            <a href="home.html"><img class="logo-photo" src="/Binks-Melody/assets/Logo-C5T0sY-W.png"></a>
             <p>Bink’s Melody</p>
         </div>
         <div class="guest">
@@ -62,10 +62,10 @@
 
         <div id="player-shell">
             <div id="player" class="player">
-                <div class="player-visual">
-                    <div id="bars" class="bars"></div>
-                </div>
-
+                <button id="player-toggle" class="player-toggle">
+                    <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cg%20fill='none'%20fill-rule='evenodd'%3e%3cpath%20d='M24%200v24H0V0zM12.593%2023.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02%200%200%200-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z'/%3e%3cpath%20fill='%23F1F1F1'%20d='M12.707%2015.707a1%201%200%200%201-1.414%200L5.636%2010.05A1%201%200%201%201%207.05%208.636l4.95%204.95l4.95-4.95a1%201%200%200%201%201.414%201.414z'/%3e%3c/g%3e%3c/svg%3e" alt="Toggle Player">
+                </button>
+                <canvas id="visualizer"></canvas>
                 <div class="player-header">
                     <div class="meta">
                         <img id="p-cover" alt="" />
@@ -97,7 +97,7 @@
                     </button>
                 </div>
 
-                <audio id="player-audio" preload="metadata"></audio>
+                <audio id="player-audio" preload="metadata" crossorigin="anonymous"></audio>
             </div>
         </div>
 
