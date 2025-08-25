@@ -1,4 +1,4 @@
-import{b as i,i as d,a as m,j as u}from"./firebase-DtfHErYr.js";import"./main-Frh6MUDs.js";const a=document.getElementById("playlistsContainer"),n=document.getElementById("newPlaylistBtn");async function y(){const t=i.currentUser;if(!t)return;const o=d(m,"users",t.uid,"playlists");(await u(o)).forEach(s=>{const r=s.data(),e=document.createElement("div");e.className="playlist",e.innerHTML=`
+import{b as i,i as d,a as m,j as u}from"./firebase-xTxWf9IG.js";import"./main-B_SyD28g.js";const a=document.getElementById("playlistsContainer"),n=document.getElementById("newPlaylistBtn");async function y(){const t=i.currentUser;if(!t)return;const o=d(m,"users",t.uid,"playlists");(await u(o)).forEach(s=>{const r=s.data(),e=document.createElement("div");e.className="playlist",e.innerHTML=`
       <div></div>
       <p>${r.name}</p>
       <span class="more-icon"><img src="/Binks-Melody/Media/More-icon.svg"></span>
