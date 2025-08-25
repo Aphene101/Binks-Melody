@@ -30,6 +30,8 @@ const playIcon = document.getElementById('play-icon');
 let currentPlaylist = [];
 let currentIndex = -1;
 
+let audioCtx, analyser, source, dataArray;
+
 // Display search results
 function displayResults(tracks) {
     resultsContainer.innerHTML = '';
@@ -69,6 +71,22 @@ function displayResults(tracks) {
     });
 }
 
+function initVisualizer() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        source = audioCtx.createMediaElementSource(audioPlayer);
+
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 256;
+
+        const bufferLength = analyser.frequencyBinCount;
+        dataArray = new Uint8Array(bufferLength);
+
+        source.connect(analyser);
+        analyser.connect(audioCtx.destination);
+    }
+}
+
 // Play selected track
 function playTrack(audioUrl, track, index, playlist) {
 
@@ -80,13 +98,17 @@ function playTrack(audioUrl, track, index, playlist) {
     document.getElementById('player').classList.add('open');
 
     audioPlayer.pause();
-    audioPlayer.src = audioUrl;
+    const u = new URL(audioUrl);
+    const proxied = `/audio-proxy${u.pathname}${u.search}`;
+    audioPlayer.src = proxied;
     audioPlayer.load();
 
     currentPlaylist = playlist;
     currentIndex = index;
 
     seekEl.value = 0;
+
+    initVisualizer();
 
     audioPlayer.addEventListener('canplay', function onCanPlay() {
         audioPlayer.removeEventListener('canplay', onCanPlay);
@@ -179,3 +201,54 @@ searchInput.addEventListener('input', async (e) => {
         resultsContainer.style.display = 'none';
     }
 });
+
+function drawBar(ctx, x, y, width, height, radius) {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+    ctx.fill();
+}
+
+function drawVisualizer() {
+    requestAnimationFrame(drawVisualizer);
+
+    if (!analyser) return;
+
+    analyser.getByteFrequencyData(dataArray);
+
+    const canvas = document.getElementById("visualizer");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+
+    const gap = 10;
+    const barCount = 35;
+    const step = Math.floor(dataArray.length / barCount);
+    const barWidth = (canvas.width / barCount) - gap;
+
+    const minHeight = 8;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const totalWidth = barCount * barWidth + (barCount - 1) * gap;
+    const offsetX = (canvas.width - totalWidth) / 2;
+
+    for (let i = 0; i < barCount; i++) {
+        const value = dataArray[i * step];
+        const barHeight = Math.max((value / 255) * canvas.height, minHeight);
+
+        ctx.fillStyle = '#C2CDB3';
+        drawBar(ctx, offsetX + i * (barWidth + gap), canvas.height - barHeight, barWidth, barHeight, 10);
+    }
+}
+
+drawVisualizer();

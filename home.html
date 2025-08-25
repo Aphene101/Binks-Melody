@@ -59,10 +59,7 @@
 
         <div id="player-shell">
             <div id="player" class="player">
-                <div class="player-visual">
-                    <div id="bars" class="bars"></div>
-                </div>
-
+                <canvas id="visualizer"></canvas>
                 <div class="player-header">
                     <div class="meta">
                         <img id="p-cover" alt="" />
@@ -94,7 +91,7 @@
                     </button>
                 </div>
 
-                <audio id="player-audio" preload="metadata"></audio>
+                <audio id="player-audio" preload="metadata" crossorigin="anonymous"></audio>
             </div>
         </div>
 
