@@ -99,7 +99,7 @@ function playTrack(audioUrl, track, index, playlist) {
 
     audioPlayer.pause();
     const u = new URL(audioUrl);
-    const proxied = `/audio-proxy${u.pathname}${u.search}`;
+    const proxied = `https://jamendo-proxy.aphene-falcon.workers.dev${u.pathname}${u.search}`;
     audioPlayer.src = proxied;
     audioPlayer.load();
 

@@ -16,14 +16,4 @@ export default defineConfig({
             },
         },
     },
-    server: {
-        proxy: {
-            '/audio-proxy': {
-                target: 'https://prod-1.storage.jamendo.com',
-                changeOrigin: true,
-                secure: true,
-                rewrite: (path) => path.replace(/^\/audio-proxy/, '')
-            }
-        }
-    }
 });
