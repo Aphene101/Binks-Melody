@@ -1,4 +1,4 @@
-import{b as o,i as g,a as c,j as h,d as m,u as v,k as B}from"./firebase-C1ouNFIi.js";import"./main-tyq-dpBh.js";const u=document.getElementById("playlistsContainer"),p=document.getElementById("newPlaylistBtn"),t=document.createElement("div");t.className="playlist-popup hidden";t.innerHTML=`
+import{b as o,i as g,a as c,j as h,d as m,u as v,k as B}from"./firebase-BL9DzEB1.js";import"./main-Bw8jdeIu.js";const u=document.getElementById("playlistsContainer"),p=document.getElementById("newPlaylistBtn"),t=document.createElement("div");t.className="playlist-popup hidden";t.innerHTML=`
   <div class="popup-item" id="renameBtn">
     <img src="/Binks-Melody/Media/Rename-icon.svg" alt="Rename">
     <span>Rename</span>

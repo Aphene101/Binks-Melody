@@ -198,6 +198,10 @@ body {
   color: rgba(80,39,83,0.6);
 }
 
+.search-icon {
+  user-select: none;
+}
+
 .section-title {
   font-size: clamp(4rem, 2vw, 5rem);
   font-weight: 400;
@@ -234,7 +238,7 @@ body {
 .card:hover {
   transform: scale(1.03);
   background-color: #C2CDB3;
-  color: #F1F1F1;
+  color: #302E31;
 }
 
 /* Overlay Styles */
