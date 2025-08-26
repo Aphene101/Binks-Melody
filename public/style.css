@@ -94,6 +94,10 @@ body {
   padding: 7px 30px;
   border-radius: 15px;
   transition: all 0.2s;
+  height: 40px;
+  line-height: 1;
+  display: inline-block;
+  overflow: hidden;
 }
 
 .login, .sign-up {
@@ -102,15 +106,20 @@ body {
 }
 
 .login:hover, .sign-up:hover {
-    font-size: 22px;
+    transform: scale(1.05);
+    background-color: #C2CDB3;
 }
 
 .login:active, .sign-up:active {
-  font-size: 20px;
+  transform: scale(1);
 }
 
 #login-email, #sign-up-username, #sign-up-button {
   margin-top: 20px;
+}
+
+#login-error {
+  margin-bottom: 10px;
 }
 
 .login-box input, .sign-up-box input {
@@ -143,6 +152,12 @@ body {
   text-decoration: none;
   font-size: 0.9rem;
   margin: 4px 0;
+  transition: all 0.1s;
+}
+
+.links a:hover {
+  transform: scale(1.05);
+  color: #C2CDB3;
 }
 
 /*Home Page*/
@@ -395,6 +410,10 @@ hr {
   color: #C2CDB3;
 }
 
+.playlist:hover, .new-playlist:hover {
+  background-color: #454444;
+}
+
 .playlist div {
   display: block;
   flex-shrink: 0;
@@ -417,10 +436,12 @@ hr {
 
 .more-icon img {
   height: 30px;
+  user-select: none;
 }
 
 .add-icon img {
   width: 60px;
+  user-select: none;
 }
 
 /*Add Playlist Styles*/
@@ -433,7 +454,7 @@ hr {
   bottom: -100%;
   left: 10vw;
   right: 10vw;
-  background-color: #C2CDB3;
+  background-color: #F1F1F1;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   transition: bottom 0.3s ease;
   z-index: 1002;
@@ -488,6 +509,12 @@ button#createPlaylistBtn {
   padding: 1vw 2vw;
   border-radius: 15px;
   border: 0;
+  transition: all 0.2s;
+}
+
+button#createPlaylistBtn:hover {
+  font-size: clamp(1rem, 2.2vw, 5rem);
+  margin: -1.8px 0;
 }
 
 /*Playlist Menu Styles*/
@@ -496,13 +523,14 @@ button#createPlaylistBtn {
 }
 
 .playlist-popup {
-  position: absolute;
+  position: fixed;
   background: #F1F1F1;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   padding: 6px 0;
   width: 150px;
   z-index: 1000;
+  transform: translate(-100%, 0);
 }
 
 .playlist-popup.hidden {
