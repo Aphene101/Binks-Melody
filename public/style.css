@@ -108,6 +108,7 @@ body {
 .login:hover, .sign-up:hover {
     transform: scale(1.05);
     background-color: #C2CDB3;
+    color: #302E31;
 }
 
 .login:active, .sign-up:active {
@@ -157,7 +158,7 @@ body {
 
 .links a:hover {
   transform: scale(1.05);
-  color: #C2CDB3;
+  color: #585d51;
 }
 
 /*Home Page*/
