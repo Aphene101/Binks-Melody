@@ -1,8 +1,25 @@
 import { db, auth } from './firebase.js';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 const playlistsContainer = document.getElementById('playlistsContainer');
 const newPlaylistBtn = document.getElementById('newPlaylistBtn');
+
+const popupMenu = document.createElement('div');
+popupMenu.className = 'playlist-popup hidden';
+popupMenu.innerHTML = `
+  <div class="popup-item" id="renameBtn">
+    <img src="${import.meta.env.BASE_URL}Media/Rename-icon.svg" alt="Rename">
+    <span>Rename</span>
+  </div>
+  <hr>
+  <div class="popup-item" id="deleteBtn">
+    <img src="${import.meta.env.BASE_URL}Media/Delete-Icon.svg" alt="Delete">
+    <span>Delete</span>
+  </div>
+`;
+document.body.appendChild(popupMenu);
+
+let currentPlaylistId = null;
 
 async function renderPlaylists() {
   const user = auth.currentUser;
@@ -30,19 +47,62 @@ async function renderPlaylists() {
 
     playlistDiv.addEventListener('click', (event) => {
       if (event.target.closest('.more-icon')) return;
-
       localStorage.setItem('currentPlaylistId', doc.id);
       window.location.href = 'playlist.html';
     });
+
+    playlistDiv.querySelector('.more-icon').addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      if (!popupMenu.classList.contains('hidden')) {
+        popupMenu.classList.add('hidden');
+        return;
+      }
+
+      currentPlaylistId = doc.id;
+
+      const rect = e.target.getBoundingClientRect();
+      popupMenu.style.top = `${rect.bottom + window.scrollY}px`;
+      popupMenu.style.left = `${rect.left + window.scrollX}px`;
+      popupMenu.classList.remove('hidden');
+    });
   });
 }
+
+document.addEventListener('click', (e) => {
+  if (!popupMenu.contains(e.target)) {
+    popupMenu.classList.add('hidden');
+  }
+});
+
+document.getElementById('renameBtn').addEventListener('click', async () => {
+  const newName = prompt("Enter new playlist name:");
+  if (!newName) return;
+
+  const user = auth.currentUser;
+  if (!user || !currentPlaylistId) return;
+
+  const playlistRef = doc(db, "users", user.uid, "playlists", currentPlaylistId);
+  await updateDoc(playlistRef, { name: newName });
+
+  location.reload();
+});
+
+document.getElementById('deleteBtn').addEventListener('click', async () => {
+  const confirmDelete = confirm("Are you sure you want to delete this playlist?");
+  if (!confirmDelete) return;
+
+  const user = auth.currentUser;
+  if (!user || !currentPlaylistId) return;
+
+  const playlistRef = doc(db, "users", user.uid, "playlists", currentPlaylistId);
+  await deleteDoc(playlistRef);
+
+  location.reload();
+});
 
 auth.onAuthStateChanged(user => {
   if (user) {
     renderPlaylists();
   }
-});
-
-newPlaylistBtn.addEventListener('click', () => {
-
 });

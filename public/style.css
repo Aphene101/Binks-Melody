@@ -93,6 +93,7 @@ body {
   background-color: #431347;
   padding: 7px 30px;
   border-radius: 15px;
+  transition: all 0.2s;
 }
 
 .login, .sign-up {
@@ -487,6 +488,54 @@ button#createPlaylistBtn {
   padding: 1vw 2vw;
   border-radius: 15px;
   border: 0;
+}
+
+/*Playlist Menu Styles*/
+#playlistsContainer {
+  position: relative;
+}
+
+.playlist-popup {
+  position: absolute;
+  background: #F1F1F1;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 6px 0;
+  width: 150px;
+  z-index: 1000;
+}
+
+.playlist-popup.hidden {
+  display: none;
+}
+
+.playlist-popup .popup-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #502753;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.playlist-popup .popup-item img {
+  width: 18px;
+  height: 18px;
+}
+
+.playlist-popup .popup-item:hover {
+  background: rgba(74, 35, 90, 0.1);
+}
+
+.playlist-popup hr {
+  border: none;
+  border-top: 1px solid #502753;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 /* Search results container */
