@@ -198,6 +198,10 @@ body {
   color: rgba(80,39,83,0.6);
 }
 
+.search-icon {
+  user-select: none;
+}
+
 .section-title {
   font-size: clamp(4rem, 2vw, 5rem);
   font-weight: 400;
@@ -234,7 +238,7 @@ body {
 .card:hover {
   transform: scale(1.03);
   background-color: #C2CDB3;
-  color: #F1F1F1;
+  color: #302E31;
 }
 
 /* Overlay Styles */
@@ -565,6 +569,55 @@ button#createPlaylistBtn:hover {
   width: 90%;
   margin-right: auto;
   margin-left: auto;
+}
+
+/* Playlist Detail Page */
+
+.playlist-detail-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 5vh 5vh 0 5vh;
+}
+
+.playlist-head {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-top: 2vh;
+}
+
+.back-btn {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+}
+.back-btn img {
+  width: 35px;
+  height: 35px;
+}
+
+.pl-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  background: #F1F1F1;
+  border: 1px solid rgba(241,241,241,0.2);
+  object-fit: cover;
+}
+
+.pl-name {
+  font-size: clamp(1.5rem, 5vw, 4rem);
+  font-weight: 400;
+  letter-spacing: .3rem;
+  color: #F1F1F1;
+}
+
+.songs-list {
+  display: flex;
+  flex-direction: column;
 }
 
 /* Search results container */

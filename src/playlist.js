@@ -1,0 +1,82 @@
+import { db, auth } from './firebase.js';
+import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
+
+const params = new URLSearchParams(window.location.search);
+let playlistId = params.get('id') || localStorage.getItem('currentPlaylistId');
+
+const backBtn = document.getElementById('pl-back');
+const nameEl = document.getElementById('pl-name');
+const iconEl = document.getElementById('pl-icon');
+const songsWrap = document.getElementById('pl-songs');
+
+backBtn.addEventListener('click', () => {
+  window.location.href = 'playlists.html';
+});
+
+auth.onAuthStateChanged(async (user) => {
+  if (!playlistId) {
+    console.warn('No playlist id found');
+    return;
+  }
+  await loadPlaylist(user.uid, playlistId);
+});
+
+async function loadPlaylist(uid, id) {
+  const ref = doc(db, 'users', uid, 'playlists', id);
+  const snap = await getDoc(ref);
+  if (!snap.exists()) return;
+
+  const data = snap.data();
+  nameEl.textContent = data.name || 'Untitled Playlist';
+
+  let songs = [];
+  if (Array.isArray(data.songs) && data.songs.length) {
+    songs = data.songs;
+  } else {
+    const songsCol = collection(db, 'users', uid, 'playlists', id, 'songs');
+    const songsSnap = await getDocs(songsCol);
+    songs = songsSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+  }
+
+  const cover =
+    songs[0]?.album_image || songs[0]?.albumArt || songs[0]?.cover || '';
+  iconEl.src = cover || '/public/Media/Logo.png';
+
+  renderSongs(songs);
+}
+
+function renderSongs(songs) {
+  songsWrap.innerHTML = '';
+
+  songs.forEach(track => {
+    const wrapper = document.createElement('div');
+    const row = document.createElement('div');
+    row.className = 'song-item';
+
+    const title  = track.name || track.title || 'Unknown Title';
+    const artist = track.artist_name || track.artist || 'Unknown Artist';
+    const cover  = track.album_image || track.albumArt || track.cover || '';
+
+    row.innerHTML = `
+      <div class="song-left">
+        <div class="song-thumb">
+          <img src="${cover}" alt="">
+        </div>
+        <div class="song-info">
+          <span class="song-title">${title}</span>
+          <span class="song-artist">${artist}</span>
+        </div>
+      </div>
+      <button class="song-menu">
+        <img class="more-icon" src="${import.meta.env.BASE_URL}Media/More-icon.svg">
+      </button>
+    `;
+
+    wrapper.appendChild(row);
+    const hr = document.createElement('hr');
+    hr.classList.add('song-separator');
+
+    songsWrap.appendChild(wrapper);
+    songsWrap.appendChild(hr);
+  });
+}

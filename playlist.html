@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlists</title>
+    <link rel="stylesheet" href="/public/style.css"/>
+</head>
+<body>
+    <header class="top-bar">
+        <div class="logo">
+            <a href="home.html"><img class="logo-photo" src="/public/Media/Logo.png"></a>
+            <p>Bink’s Melody</p>
+        </div>
+        <div class="guest">
+            <span><img class="user-icon" src="/public/Media/User.svg"></span>
+            <p>Guest</p>
+        </div>
+    </header>
+
+    <main class="playlists-page">
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <img class="logo-photo-sidebar" src="/public/Media/Logo.png">
+                <div class="sidebar-buttons">
+                    <div class="playlists">
+                        <a href="playlists.html">
+                            <p>Playlists</p>
+                            <img class="playlist-icon" src="/public/Media/Playlist-icon.svg">
+                        </a>
+                    </div>
+                    <div class="account">
+                        <a href="account.html">
+                            <p>Account</p>
+                            <img class="account-icon" src="/public/Media/Account-icon.svg">
+                        </a>
+                    </div>
+                    <div class="settings">
+                        <a href="settings.html">
+                            <p>Settings</p>
+                            <img class="settings-icon" src="/public/Media/Settings-icon.svg">
+                        </a>
+                    </div>
+                </div>
+                <hr>
+                    <div class="logout">
+                        <a href="index.html">
+                            <p>Logout</p>
+                            <img class="logout-icon" src="/public/Media/Logout-icon.svg">
+                        </a>
+                    </div>
+            </div>
+        </aside>
+        <div class="playlists-detail-page">
+            <div class="playlist-head">
+                <button id="pl-back" class="back-btn" title="Back to Playlists">
+                    <img src="/public/Media/Back-Playlist-icon.svg" alt="Back">
+                </button>
+
+                <img id="pl-icon" class="pl-icon" alt="Playlist Icon"/>
+
+                <h1 id="pl-name" class="pl-name">Playlist</h1>
+            </div>
+
+            <div id="pl-songs" class="songs-list"></div>
+        </div>
+    </main>
+
+    <div id="app"></div>
+    <script type="module" src="/src/playlist.js"></script>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
