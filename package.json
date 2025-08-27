@@ -4,6 +4,7 @@
   "description": "Music Playlist &amp; Visualizer Web App",
   "main": "index.js",
   "scripts": {
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
