@@ -1,4 +1,24 @@
+import { db, auth } from './firebase.js';
+import { collection, getDocs, doc, updateDoc, arrayUnion } from 'firebase/firestore';
+
 const CLIENT_ID = '804bfeee';
+
+let currentUserId = null;
+auth.onAuthStateChanged(user => {
+  if (user) currentUserId = user.uid;
+});
+
+const songPopup = document.createElement('div');
+songPopup.className = 'song-popup hidden';
+songPopup.innerHTML = `
+  <div class="popup-item" id="addToPlaylistBtn">
+    <img src="${import.meta.env.BASE_URL}Media/Purple-Add-Icon.svg" alt="Add">
+    <span>Add to Playlist</span>
+  </div>
+`;
+document.body.appendChild(songPopup);
+
+let currentTrack = null;
 
 // Search function
 async function searchTracks(query) {
@@ -61,6 +81,16 @@ function displayResults(tracks) {
             playTrack(track.audio, track, index, tracks);
         });
 
+        trackDiv.querySelector(".song-menu").addEventListener("click", (e) => {
+            e.stopPropagation();
+            currentTrack = track;
+
+            const rect = e.currentTarget.getBoundingClientRect();
+            songPopup.style.top = `${rect.bottom + window.scrollY}px`;
+            songPopup.style.left = `${rect.left + window.scrollX}px`;
+            songPopup.classList.remove('hidden');
+        });
+
         trackWrapper.appendChild(trackDiv);
 
         const hr = document.createElement('hr');
@@ -70,6 +100,85 @@ function displayResults(tracks) {
         resultsContainer.appendChild(trackWrapper);
     });
 }
+
+document.addEventListener('click', (e) => {
+    if (!songPopup.contains(e.target)) {
+        songPopup.classList.add('hidden');
+    }
+});
+
+async function handleAddToPlaylist() {
+    songPopup.classList.add('hidden');
+    if (!currentUserId || !currentTrack) return;
+
+    const chooser = document.createElement('div');
+    chooser.className = 'playlist-chooser';
+
+    const playlistsCol = collection(db, 'users', currentUserId, 'playlists');
+    const snap = await getDocs(playlistsCol);
+
+    if (snap.empty) {
+        const none = document.createElement('div');
+        none.className = 'playlist-row';
+        none.innerHTML = `<p>No playlists found</p>`;
+        chooser.appendChild(none);
+    } else {
+        snap.docs.forEach((pl, index) => {
+            const row = document.createElement('div');
+            row.className = 'playlist-row';
+
+            row.innerHTML = `
+            <div class="playlist-icon"></div>
+            <p>${pl.data().name || 'Untitled Playlist'}</p>
+            <span class="add-icon"><img src="${import.meta.env.BASE_URL}Media/Add-To-Playlist-icon.svg" alt="Add"></span>
+            `;
+
+            const iconEl = row.querySelector('.playlist-icon');
+            const cover = pl.data().songs?.[0]?.album_image || pl.data().songs?.[0]?.albumArt || pl.data().songs?.[0]?.cover || '';
+
+            if (cover) {
+                iconEl.style.backgroundImage = `url(${cover})`;
+                iconEl.style.backgroundColor = 'transparent';
+                iconEl.style.backgroundSize = 'cover';
+                iconEl.style.backgroundPosition = 'center';
+            } else {
+                iconEl.style.backgroundImage = 'none';
+            }
+
+
+            row.addEventListener('click', async () => {
+                await updateDoc(doc(db, 'users', currentUserId, 'playlists', pl.id), {
+                    songs: arrayUnion(currentTrack)
+                });
+                slideOutAndRemove(chooser);
+            });
+            chooser.appendChild(row);
+
+            if (index < snap.docs.length - 1) {
+                const sep = document.createElement('hr');
+                sep.className = 'playlist-separator';
+                chooser.appendChild(sep);
+            }
+        });
+    }
+
+    document.body.appendChild(chooser);
+
+    chooser.classList.add('show');
+
+    function slideOutAndRemove(element) {
+        element.classList.remove('show');
+        element.classList.add('hide');
+        element.addEventListener('animationend', () => element.remove(), { once: true });
+    }
+
+    setTimeout(() => {
+        document.addEventListener('click', () => slideOutAndRemove(chooser), { once: true });
+    }, 0);
+};
+
+document.getElementById('addToPlaylistBtn').addEventListener('click', handleAddToPlaylist);
+document.getElementById('p-add').addEventListener('click', handleAddToPlaylist);
 
 function initVisualizer() {
     if (!audioCtx) {
