@@ -1,5 +1,5 @@
 import { db, auth } from './firebase.js';
-import { collection, query, where, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 const playlistsContainer = document.getElementById('playlistsContainer');
 const newPlaylistBtn = document.getElementById('newPlaylistBtn');
@@ -35,10 +35,23 @@ async function renderPlaylists() {
     playlistDiv.className = 'playlist';
 
     playlistDiv.innerHTML = `
-      <div></div>
+      <div class="pl-icon"></div>
       <p>${data.name}</p>
       <span class="more-icon"><img src="${import.meta.env.BASE_URL}Media/More-icon.svg"></span>
-      `;
+    `;
+
+    const iconEl = playlistDiv.querySelector('.pl-icon');
+    const cover = data.songs?.[0]?.album_image || data.songs?.[0]?.albumArt || data.songs?.[0]?.cover || '';
+
+    if (cover) {
+      iconEl.style.backgroundImage = `url(${cover})`;
+      iconEl.style.backgroundColor = 'transparent';
+      iconEl.style.backgroundSize = 'cover';
+      iconEl.style.backgroundPosition = 'center';
+    } else {
+      iconEl.style.backgroundImage = 'none';
+    }
+
 
     const hr = document.createElement('hr');
 

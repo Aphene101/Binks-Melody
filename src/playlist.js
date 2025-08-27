@@ -1,5 +1,5 @@
 import { db, auth } from './firebase.js';
-import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
+import { doc, getDoc, getDocs, collection, updateDoc, arrayUnion } from 'firebase/firestore';
 
 const params = new URLSearchParams(window.location.search);
 let playlistId = params.get('id') || localStorage.getItem('currentPlaylistId');
@@ -8,6 +8,8 @@ const backBtn = document.getElementById('pl-back');
 const nameEl = document.getElementById('pl-name');
 const iconEl = document.getElementById('pl-icon');
 const songsWrap = document.getElementById('pl-songs');
+
+let currentUserId = null;
 
 backBtn.addEventListener('click', () => {
   window.location.href = 'playlists.html';
@@ -18,7 +20,10 @@ auth.onAuthStateChanged(async (user) => {
     console.warn('No playlist id found');
     return;
   }
-  await loadPlaylist(user.uid, playlistId);
+  if (user) {
+    currentUserId = user.uid;
+    await loadPlaylist(user.uid, playlistId);
+  }
 });
 
 async function loadPlaylist(uid, id) {
@@ -40,9 +45,16 @@ async function loadPlaylist(uid, id) {
 
   const cover =
     songs[0]?.album_image || songs[0]?.albumArt || songs[0]?.cover || '';
-  iconEl.src = cover || '/public/Media/Logo.png';
+    if (cover) {
+        iconEl.style.backgroundImage = `url(${cover})`;
+        iconEl.style.backgroundColor = 'transparent';
+        iconEl.style.backgroundSize = 'cover';
+        iconEl.style.backgroundPosition = 'center';
+    } else {
+        iconEl.style.backgroundImage = 'none';
+    }
 
-  renderSongs(songs);
+    renderSongs(songs);
 }
 
 function renderSongs(songs) {
@@ -78,5 +90,10 @@ function renderSongs(songs) {
 
     songsWrap.appendChild(wrapper);
     songsWrap.appendChild(hr);
+
+    row.querySelector('.song-menu').addEventListener('click', (e) => {
+      e.stopPropagation();
+      openMorePopup(e.currentTarget, track);
+    });
   });
 }
