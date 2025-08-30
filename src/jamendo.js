@@ -18,20 +18,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const player = document.getElementById('player');
     const toggleBtn = document.getElementById('player-toggle');
-    if (toggleBtn && player) {
-        toggleBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            player.classList.toggle('minimized');
-        });
+    const playBtn = document.getElementById('p-play');
 
-        player.addEventListener('click', (e) => {
-            if (!player.classList.contains('minimized')) return;
-            const playBtn = document.getElementById('p-play');
-            if (!playBtn.contains(e.target)) {
-                player.classList.remove('minimized');
-            }
-        });
+    if (!player || !toggleBtn || !playBtn) {
+        console.warn('Minimizer setup skipped: missing elements');
+        return;
     }
+
+    toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        player.classList.toggle('minimized');
+    });
+
+    player.addEventListener('click', (e) => {
+        if (!player.classList.contains('minimized')) return;
+        if (!playBtn.contains(e.target)) {
+        player.classList.remove('minimized');
+        }
+    });
 
     const addBtn = document.getElementById('p-add');
     if (addBtn) {
@@ -404,19 +408,3 @@ function drawVisualizer() {
         drawBar(ctx, offsetX + i * (barWidth + gap), canvas.height - barHeight, barWidth, barHeight, 10);
     }
 }
-
-const player = document.getElementById('player');
-const toggleBtn = document.getElementById('player-toggle');
-
-toggleBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    player.classList.toggle('minimized');
-});
-
-player.addEventListener('click', (e) => {
-  if (!player.classList.contains('minimized')) return;
-
-  if (!playBtn.contains(e.target)) {
-    player.classList.remove('minimized');
-  }
-});
