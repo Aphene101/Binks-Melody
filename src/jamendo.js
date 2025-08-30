@@ -8,6 +8,37 @@ auth.onAuthStateChanged(user => {
   if (user) currentUserId = user.uid;
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('play-request', (e) => {
+        const { track, index, playlist } = e.detail;
+        console.log('Received play-request for:', track.name);
+        currentTrack = track;
+        playTrack(track.audio, track, index, playlist);
+    });
+
+    const player = document.getElementById('player');
+    const toggleBtn = document.getElementById('player-toggle');
+    if (toggleBtn && player) {
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            player.classList.toggle('minimized');
+        });
+
+        player.addEventListener('click', (e) => {
+            if (!player.classList.contains('minimized')) return;
+            const playBtn = document.getElementById('p-play');
+            if (!playBtn.contains(e.target)) {
+                player.classList.remove('minimized');
+            }
+        });
+    }
+
+    const addBtn = document.getElementById('p-add');
+    if (addBtn) {
+        addBtn.addEventListener('click', handleAddToPlaylist);
+    }
+});
+
 const songPopup = document.createElement('div');
 songPopup.className = 'song-popup hidden';
 songPopup.innerHTML = `
@@ -34,18 +65,15 @@ const gridContainer = document.querySelector('.grid-container');
 const resultsContainer = document.getElementById('search-results');
 
 const audioPlayer = document.getElementById('player-audio');
-const songTitle = document.getElementById('p-title');
-const songArtist = document.getElementById('p-artist');
-const songThumb = document.getElementById('p-cover');
+const playIcon = document.getElementById('play-icon');
+const seekEl = document.getElementById('p-seek');
+
 const currentEl = document.getElementById('p-current');
 const durationEl = document.getElementById('p-duration');
-const seekEl = document.getElementById('p-seek');
 
 const playBtn = document.getElementById('p-play');
 const prevBtn = document.getElementById('p-prev');
 const nextBtn = document.getElementById('p-next');
-
-const playIcon = document.getElementById('play-icon');
 
 let currentPlaylist = [];
 let currentIndex = -1;
@@ -78,7 +106,10 @@ function displayResults(tracks) {
         `;
 
         trackDiv.querySelector(".song-left").addEventListener("click", () => {
-            playTrack(track.audio, track, index, tracks);
+            const event = new CustomEvent('play-request', {
+                detail: { track, index, playlist: tracks }
+            });
+            window.dispatchEvent(event);
         });
 
         trackDiv.querySelector(".song-menu").addEventListener("click", (e) => {
@@ -181,6 +212,7 @@ document.getElementById('addToPlaylistBtn').addEventListener('click', handleAddT
 document.getElementById('p-add').addEventListener('click', handleAddToPlaylist);
 
 function initVisualizer() {
+    const audioPlayer = document.getElementById('player-audio');
     if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         source = audioCtx.createMediaElementSource(audioPlayer);
@@ -193,11 +225,24 @@ function initVisualizer() {
 
         source.connect(analyser);
         analyser.connect(audioCtx.destination);
+
+        drawVisualizer();
     }
 }
 
 // Play selected track
 function playTrack(audioUrl, track, index, playlist) {
+    const audioPlayer = document.getElementById('player-audio');
+    const songTitle = document.getElementById('p-title');
+    const songArtist = document.getElementById('p-artist');
+    const playIcon = document.getElementById('play-icon');
+    const seekEl = document.getElementById('p-seek');
+    const songThumb = document.getElementById('p-cover');
+
+    if (!songTitle || !songArtist || !songThumb || !playIcon || !audioPlayer || !seekEl) {
+        console.warn('Player elements not found');
+        return;
+    }
 
     songTitle.textContent = track.name;
     songArtist.textContent = track.artist_name;
@@ -359,8 +404,6 @@ function drawVisualizer() {
         drawBar(ctx, offsetX + i * (barWidth + gap), canvas.height - barHeight, barWidth, barHeight, 10);
     }
 }
-
-drawVisualizer();
 
 const player = document.getElementById('player');
 const toggleBtn = document.getElementById('player-toggle');

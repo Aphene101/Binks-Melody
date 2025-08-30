@@ -51,6 +51,48 @@
                     </div>
             </div>
         </aside>
+
+        <div id="player-shell">
+            <div id="player" class="player">
+                <button id="player-toggle" class="player-toggle">
+                    <img src="/public/Media/Down-Arrow.svg" alt="Toggle Player">
+                </button>
+                <canvas id="visualizer"></canvas>
+                <div class="player-header">
+                    <div class="meta">
+                        <img id="p-cover" alt="" />
+                        <div>
+                            <h3 id="p-title">Song Name</h3>
+                            <p id="p-artist">Artist Name</p>
+                        </div>
+                    </div>
+                    <button id="p-add" class="icon-btn" title="Add to playlist">
+                        <img class="add-song" src="/public/Media/Add-icon.svg">
+                    </button>
+                </div>
+
+                <div class="timeline">
+                    <span id="p-current">0:00</span>
+                    <input type="range" id="p-seek" min="0" max="100" value="0" />
+                    <span id="p-duration">0:00</span>
+                </div>
+
+                <div class="controls">
+                    <button id="p-prev" class="icon-btn" title="Previous">
+                        <img src="public/Media/Back-icon.svg">
+                    </button>
+                    <button id="p-play" class="pill-btn" title="Play/Pause">
+                        <img id="play-icon" src="public/Media/Pause-icon.svg">
+                    </button>
+                    <button id="p-next" class="icon-btn" title="Next">
+                        <img src="public/Media/Forward-icon.svg">
+                    </button>
+                </div>
+
+                <audio id="player-audio" preload="metadata" crossorigin="anonymous"></audio>
+            </div>
+        </div>
+
         <div class="playlists-detail-page">
             <div class="playlist-head">
                 <button id="pl-back" class="back-btn" title="Back to Playlists">

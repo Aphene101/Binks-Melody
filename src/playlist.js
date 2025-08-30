@@ -1,5 +1,5 @@
 import { db, auth } from './firebase.js';
-import { doc, getDoc, getDocs, collection, updateDoc, arrayUnion } from 'firebase/firestore';
+import { doc, getDoc, getDocs, collection } from 'firebase/firestore';
 
 const params = new URLSearchParams(window.location.search);
 let playlistId = params.get('id');
@@ -66,7 +66,7 @@ async function loadPlaylist(uid, id) {
 function renderSongs(songs) {
   songsWrap.innerHTML = '';
 
-  songs.forEach(track => {
+  songs.forEach((track, index) => {
     const wrapper = document.createElement('div');
     const row = document.createElement('div');
     row.className = 'song-item';
@@ -100,6 +100,17 @@ function renderSongs(songs) {
     row.querySelector('.song-menu').addEventListener('click', (e) => {
       e.stopPropagation();
       openMorePopup(e.currentTarget, track);
+    });
+
+    row.addEventListener('click', () => {
+      const event = new CustomEvent('play-request', {
+        detail: {
+          track: track,
+          index: index,
+          playlist: songs
+        }
+      });
+      window.dispatchEvent(event);
     });
   });
 }
