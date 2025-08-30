@@ -2,7 +2,13 @@ import { db, auth } from './firebase.js';
 import { doc, getDoc, getDocs, collection, updateDoc, arrayUnion } from 'firebase/firestore';
 
 const params = new URLSearchParams(window.location.search);
-let playlistId = params.get('id') || localStorage.getItem('currentPlaylistId');
+let playlistId = params.get('id');
+console.log("Playlist ID from URL:", playlistId);
+
+if (!playlistId) {
+  alert('No playlist selected. Redirecting to playlists page.');
+  window.location.href = './playlists.html';
+}
 
 const backBtn = document.getElementById('pl-back');
 const nameEl = document.getElementById('pl-name');

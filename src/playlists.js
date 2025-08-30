@@ -60,8 +60,7 @@ async function renderPlaylists() {
 
     playlistDiv.addEventListener('click', (event) => {
       if (event.target.closest('.more-icon')) return;
-      localStorage.setItem('currentPlaylistId', doc.id);
-      window.location.href = 'playlist.html';
+      window.location.href = `playlist.html?id=${doc.id}`;
     });
 
     playlistDiv.querySelector('.more-icon').addEventListener('click', (e) => {
