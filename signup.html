@@ -1,42 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign-Up</title>
     <link rel="stylesheet" href="/public/style.css" />
-</head>
-<body>
+  </head>
+  <body>
     <header class="top-bar">
-        <div class="logo">
-            <a href="index.html"><img class="logo-photo" src="/public/Media/Logo.png"></a>
-            <p>Bink’s Melody</p>
-        </div>
-        <div class="guest">
-            <span><img class="user-icon" src="/public/Media/User.svg"></span>
-            <p>Guest</p>
-        </div>
+      <div class="logo">
+        <a href="index.html"
+          ><img class="logo-photo" src="/public/Media/Logo.png"
+        /></a>
+        <p>Bink’s Melody</p>
+      </div>
+      <div class="guest">
+        <span><img class="user-icon" src="/public/Media/User.svg" /></span>
+        <p>Guest</p>
+      </div>
     </header>
 
     <main class="sign-up-page">
-        <h1 class="welcome">Welcome</h1>
-        <div class="sign-up-box">
-            <h2>Please Sign Up</h2>
-            <form id="sign-up-form">
-                <input type="text" id="sign-up-username" placeholder="Username" required />
-                <input type="email" id="sign-up-email" placeholder="Email" required />
-                <input type="password" id="sign-up-password" placeholder="Password" required />
-            </form>
-            <p id="sign-up-error" class="error-message"></p>
-            <h2>
-            <button type="submit" id="sign-up-button" form="sign-up-form" class="sign-up">
-                Sign Up
-            </button>
-            </h2>
-        </div>
+      <h1 class="welcome">Welcome</h1>
+      <div class="sign-up-box">
+        <h2>Please Sign Up</h2>
+        <form id="sign-up-form">
+          <input
+            type="text"
+            id="sign-up-username"
+            placeholder="Username"
+            required
+          />
+          <input type="email" id="sign-up-email" placeholder="Email" required />
+          <input
+            type="password"
+            id="sign-up-password"
+            placeholder="Password"
+            required
+          />
+        </form>
+        <p id="sign-up-error" class="error-message"></p>
+        <h2>
+          <button
+            type="submit"
+            id="sign-up-button"
+            form="sign-up-form"
+            class="sign-up"
+          >
+            Sign Up
+          </button>
+        </h2>
+      </div>
     </main>
 
     <div id="app"></div>
-    <script type="module" src="/src/signup.js"></script>
-</body>
+    <script type="module" src="./src/signup.js"></script>
+  </body>
 </html>

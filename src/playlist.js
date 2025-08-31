@@ -33,9 +33,12 @@ auth.onAuthStateChanged(async (user) => {
 });
 
 async function loadPlaylist(uid, id) {
+  console.log("Loading playlists");
   const ref = doc(db, 'users', uid, 'playlists', id);
   const snap = await getDoc(ref);
   if (!snap.exists()) return;
+
+  console.log(snap + "The snap is above");
 
   const data = snap.data();
   nameEl.textContent = data.name || 'Untitled Playlist';
@@ -60,6 +63,7 @@ async function loadPlaylist(uid, id) {
         iconEl.style.backgroundImage = 'none';
     }
 
+    console.log(songs);
     renderSongs(songs);
 }
 

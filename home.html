@@ -1,116 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <link rel="stylesheet" href="/public/style.css"/>
-</head>
-<body>
+    <link rel="stylesheet" href="/public/style.css" />
+  </head>
+
+  <body>
     <header class="top-bar">
-        <div class="logo">
-            <a href="home.html"><img class="logo-photo" src="/public/Media/Logo.png"></a>
-            <p>Bink’s Melody</p>
-        </div>
-        <div class="guest">
-            <span><img class="user-icon" src="/public/Media/User.svg"></span>
-            <p>Guest</p>
-        </div>
+      <div class="logo">
+        <a href="home.html"
+          ><img class="logo-photo" src="/public/Media/Logo.png"
+        /></a>
+        <p>Bink’s Melody</p>
+      </div>
+      <div class="guest">
+        <span><img class="user-icon" src="/public/Media/User.svg" /></span>
+        <p>Guest</p>
+      </div>
     </header>
 
     <main class="home-page">
-        <aside class="sidebar">
-            <div class="sidebar-content">
-                <img class="logo-photo-sidebar" src="/public/Media/Logo.png">
-                <div class="sidebar-buttons">
-                    <div class="playlists">
-                        <a href="playlists.html">
-                            <p>Playlists</p>
-                            <img class="playlist-icon" src="/public/Media/Playlist-icon.svg">
-                        </a>
-                    </div>
-                    <div class="account">
-                        <a href="account.html">
-                            <p>Account</p>
-                            <img class="account-icon" src="/public/Media/Account-icon.svg">
-                        </a>
-                    </div>
-                    <div class="settings">
-                        <a href="settings.html">
-                            <p>Settings</p>
-                            <img class="settings-icon" src="/public/Media/Settings-icon.svg">
-                        </a>
-                    </div>
-                </div>
-                <hr>
-                    <div class="logout">
-                        <a href="index.html">
-                            <p>Logout</p>
-                            <img class="logout-icon" src="/public/Media/Logout-icon.svg">
-                        </a>
-                    </div>
+      <aside class="sidebar">
+        <div class="sidebar-content">
+          <img class="logo-photo-sidebar" src="/public/Media/Logo.png" />
+          <div class="sidebar-buttons">
+            <div class="playlists">
+              <a href="playlists.html">
+                <p>Playlists</p>
+                <img
+                  class="playlist-icon"
+                  src="/public/Media/Playlist-icon.svg"
+                />
+              </a>
             </div>
-        </aside>
-        <div class="search-container">
-            <input type="text" placeholder="Search Song" class="search-input">
-            <img class="search-icon" src="/public/Media/Search-icon.svg">
-        </div>
-        <div id="search-results"></div>
-
-        <div id="player-shell">
-            <div id="player" class="player">
-                <button id="player-toggle" class="player-toggle">
-                    <img src="/public/Media/Down-Arrow.svg" alt="Toggle Player">
-                </button>
-                <canvas id="visualizer"></canvas>
-                <div class="player-header">
-                    <div class="meta">
-                        <img id="p-cover" alt="" />
-                        <div>
-                            <h3 id="p-title">Song Name</h3>
-                            <p id="p-artist">Artist Name</p>
-                        </div>
-                    </div>
-                    <button id="p-add" class="icon-btn" title="Add to playlist">
-                        <img class="add-song" src="/public/Media/Add-icon.svg">
-                    </button>
-                </div>
-
-                <div class="timeline">
-                    <span id="p-current">0:00</span>
-                    <input type="range" id="p-seek" min="0" max="100" value="0" />
-                    <span id="p-duration">0:00</span>
-                </div>
-
-                <div class="controls">
-                    <button id="p-prev" class="icon-btn" title="Previous">
-                        <img src="public/Media/Back-icon.svg">
-                    </button>
-                    <button id="p-play" class="pill-btn" title="Play/Pause">
-                        <img id="play-icon" src="public/Media/Pause-icon.svg">
-                    </button>
-                    <button id="p-next" class="icon-btn" title="Next">
-                        <img src="public/Media/Forward-icon.svg">
-                    </button>
-                </div>
-
-                <audio id="player-audio" preload="metadata" crossorigin="anonymous"></audio>
+            <div class="account">
+              <a href="account.html">
+                <p>Account</p>
+                <img
+                  class="account-icon"
+                  src="/public/Media/Account-icon.svg"
+                />
+              </a>
             </div>
+            <div class="settings">
+              <a href="settings.html">
+                <p>Settings</p>
+                <img
+                  class="settings-icon"
+                  src="/public/Media/Settings-icon.svg"
+                />
+              </a>
+            </div>
+          </div>
+          <hr />
+          <div class="logout">
+            <a href="index.html">
+              <p>Logout</p>
+              <img class="logout-icon" src="/public/Media/Logout-icon.svg" />
+            </a>
+          </div>
         </div>
+      </aside>
+      <div class="search-container">
+        <input type="text" placeholder="Search Song" class="search-input" />
+        <img class="search-icon" src="/public/Media/Search-icon.svg" />
+      </div>
+      <div id="search-results"></div>
 
-        <h2 class="section-title">Popular</h2>
-        <div class="grid-container">
-            <div class="card premade">Premade Playlist</div>
-            <div class="card premade">Premade Playlist</div>
-            <div class="card premade">Premade Playlist</div>
-            <div class="card premade">Premade Playlist</div>
-            <div class="card premade">Premade Playlist</div>
-            <div class="card premade">Premade Playlist</div>
+      <div id="player-shell">
+        <div id="player" class="player">
+          <button id="player-toggle" class="player-toggle">
+            <img src="/public/Media/Down-Arrow.svg" alt="Toggle Player" />
+          </button>
+          <canvas id="visualizer"></canvas>
+          <div class="player-header">
+            <div class="meta">
+              <img id="p-cover" alt="" />
+              <div>
+                <h3 id="p-title">Song Name</h3>
+                <p id="p-artist">Artist Name</p>
+              </div>
+            </div>
+            <button id="p-add" class="icon-btn" title="Add to playlist">
+              <img class="add-song" src="/public/Media/Add-icon.svg" />
+            </button>
+          </div>
+
+          <div class="timeline">
+            <span id="p-current">0:00</span>
+            <input type="range" id="p-seek" min="0" max="100" value="0" />
+            <span id="p-duration">0:00</span>
+          </div>
+
+          <div class="controls">
+            <button id="p-prev" class="icon-btn" title="Previous">
+              <img src="public/Media/Back-icon.svg" />
+            </button>
+            <button id="p-play" class="pill-btn" title="Play/Pause">
+              <img id="play-icon" src="public/Media/Pause-icon.svg" />
+            </button>
+            <button id="p-next" class="icon-btn" title="Next">
+              <img src="public/Media/Forward-icon.svg" />
+            </button>
+          </div>
+
+          <audio
+            id="player-audio"
+            preload="metadata"
+            crossorigin="anonymous"
+          ></audio>
         </div>
+      </div>
+
+      <h2 class="section-title">Popular</h2>
+      <div class="grid-container">
+        <div class="card premade">Premade Playlist</div>
+        <div class="card premade">Premade Playlist</div>
+        <div class="card premade">Premade Playlist</div>
+        <div class="card premade">Premade Playlist</div>
+        <div class="card premade">Premade Playlist</div>
+        <div class="card premade">Premade Playlist</div>
+      </div>
     </main>
 
     <div id="app"></div>
-    <script type="module" src="/src/jamendo.js"></script>
-    <script type="module" src="/src/main.js"></script>
-</body>
+    <!-- <script type="module" src="/src/jamendo.js" defer></script>
+    <script type="module" src="/src/main.js" defer></script> -->
+    <script type="module" src="./src/jamendo.js" defer></script>
+    <script type="module" src="./src/main.js" defer></script>
+  </body>
 </html>
