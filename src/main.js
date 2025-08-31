@@ -1,4 +1,3 @@
-import "./login.js";
 import { auth, createPlaylist, db } from "./firebase.js";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -11,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const newPlaylistBtn = document.getElementById("newPlaylistBtn");
   const popup = document.querySelector(".add-playlist");
   const overlay = document.createElement("div");
-  const createBtn = document.getElementById("createPlaylistBtn");
-  const nameInput = document.getElementById("playlistNameInput");
+  const createBtn = document.getElementById("createPlaylistBtn") || null;
+  const nameInput = document.getElementById("playlistNameInput") || null;
 
   overlay.className = "overlay";
   document.body.appendChild(overlay);
@@ -47,8 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
   sidebar?.addEventListener("click", (e) => e.stopPropagation());
   popup?.addEventListener("click", (e) => e.stopPropagation());
 
-  createBtn.addEventListener("click", async () => {
-    const name = nameInput.value.trim();
+  createBtn?.addEventListener("click", async () => {
+    const name = (nameInput?.value || "").trim();
     if (!name) return;
 
     const userId = auth.currentUser?.uid;
@@ -66,10 +65,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-const usernameDisplay = document.querySelector(".guest p");
+const usernameDisplay = document.querySelector(".guest p") || null;
 
 onAuthStateChanged(auth, async (user) => {
-  usernameDisplay.textContent = "Guest";
+  if (usernameDisplay) usernameDisplay.textContent = "Guest";
 
   if (user) {
     try {
@@ -87,22 +86,23 @@ onAuthStateChanged(auth, async (user) => {
         usernameDisplay.textContent = username;
       } else {
         console.warn("No username found for user UID:", user.uid);
-        usernameDisplay.textContent = "Guest";
+        if (usernameDisplay) usernameDisplay.textContent = "Guest";
       }
     } catch (error) {
       console.error("Error fetching username:", error);
-      usernameDisplay.textContent = "Guest";
+      if (usernameDisplay) usernameDisplay.textContent = "Guest";
     }
   } else {
-    usernameDisplay.textContent = "Guest";
+    if (usernameDisplay) usernameDisplay.textContent = "Guest";
     console.log("No user is logged in.");
   }
 });
 
-document.querySelector(".logout").addEventListener("click", async () => {
+document.querySelector(".logout")?.addEventListener("click", async () => {
   try {
     await signOut(auth);
-    document.querySelector(".guest p").textContent = "Guest";
+    const gd = document.querySelector(".guest p");
+    if (gd) gd.textContent = "Guest";
   } catch (error) {
     console.error("Error signing out:", error);
   }

@@ -1,80 +1,86 @@
-import { auth } from './firebase.js';
-import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import { getApp } from 'firebase/app';
+import { auth } from "./firebase.js";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getApp } from "firebase/app";
 
 const app = getApp();
 const db = getFirestore(app);
 
 function getFriendlyErrorMessage(error) {
-    const code = error.code || error.message;
+  const code = error.code || error.message;
 
-    switch (code) {
-        case 'auth/invalid-email':
-            return 'Please enter a valid email address.';
-        case 'auth/user-not-found':
-            return 'No account found with this email or username.';
-        case 'auth/invalid-credential':
-            return 'Email / Password is incorrect.';
-        case 'auth/user-disabled':
-            return 'This account has been disabled.';
-        case 'auth/email-not-verified':
-            return 'Please verify your email before logging in.'
-        case 'auth/too-many-requests':
-            return 'Too many failed attempts. Please try again later.';
-        default:
-            return error.message || 'Something went wrong. Please try again.';
-    }
+  switch (code) {
+    case "auth/invalid-email":
+      return "Please enter a valid email address.";
+    case "auth/user-not-found":
+      return "No account found with this email or username.";
+    case "auth/invalid-credential":
+      return "Email / Password is incorrect.";
+    case "auth/user-disabled":
+      return "This account has been disabled.";
+    case "auth/email-not-verified":
+      return "Please verify your email before logging in.";
+    case "auth/too-many-requests":
+      return "Too many failed attempts. Please try again later.";
+    default:
+      return error.message || "Something went wrong. Please try again.";
+  }
 }
 
 async function resolveToEmail(inputValue) {
-    if (inputValue.includes('@')) {
-        return inputValue;
-    }
+  if (inputValue.includes("@")) {
+    return inputValue;
+  }
 
-    const docRef = doc(db, 'usernames', inputValue);
-    const snap = await getDoc(docRef);
+  const docRef = doc(db, "usernames", inputValue);
+  const snap = await getDoc(docRef);
 
-    if (snap.exists()) {
-        return snap.data().email;
-    } else {
-        throw new Error('Username not found');
-    }
+  if (snap.exists()) {
+    return snap.data().email;
+  } else {
+    throw new Error("Username not found");
+  }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const loginInput = document.querySelector('#login-email');
-    const passwordInput = document.querySelector('#login-password');
-    const loginButton = document.querySelector('#login-button');
-    const errorBox = document.querySelector('#login-error');
+document.addEventListener("DOMContentLoaded", () => {
+  const loginInput = document.querySelector("#login-email");
+  const passwordInput = document.querySelector("#login-password");
+  const loginButton = document.querySelector("#login-button");
+  const errorBox = document.querySelector("#login-error");
 
-    loginButton.addEventListener('click', async () => {
-        const inputVal = loginInput.value.trim();
-        const password = passwordInput.value;
+  if (!loginInput || !passwordInput || !loginButton || !errorBox) return;
 
-        if (!inputVal || !password) {
-            errorBox.textContent = 'Please enter both fields.';
-            return;
-        }
+  loginButton.addEventListener("click", async () => {
+    const inputVal = loginInput.value.trim();
+    const password = passwordInput.value;
 
-        try {
-            const email = await resolveToEmail(inputVal);
+    if (!inputVal || !password) {
+      errorBox.textContent = "Please enter both fields.";
+      return;
+    }
 
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
+    try {
+      const email = await resolveToEmail(inputVal);
 
-            if (!user.emailVerified) {
-                await signOut(auth);
-                throw { code: 'auth/email-not-verified' };
-            }
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
 
-            errorBox.textContent = '';
+      if (!user.emailVerified) {
+        await signOut(auth);
+        throw { code: "auth/email-not-verified" };
+      }
 
-            window.location.href = './home.html';
-        } catch (err) {
-            console.error('Login error:', err);
-            const friendly = getFriendlyErrorMessage(err);
-            errorBox.textContent = friendly;
-        }
-    });
+      errorBox.textContent = "";
+
+      window.location.href = "./home.html";
+    } catch (err) {
+      console.error("Login error:", err);
+      const friendly = getFriendlyErrorMessage(err);
+      errorBox.textContent = friendly;
+    }
+  });
 });
