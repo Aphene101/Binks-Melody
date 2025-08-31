@@ -1,117 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Playlists</title>
-  <script type="module" crossorigin src="/Binks-Melody/assets/playlist-BTbXJ2l6.js"></script>
-  <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/firebase-CSKsPba8.js">
-  <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/jamendo-BDwQC619.js">
-  <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/main-BhY9c6qt.js">
-  <link rel="stylesheet" crossorigin href="/Binks-Melody/assets/firebase-Cy68Pb4K.css">
-</head>
-<body>
+    <script type="module" crossorigin src="/Binks-Melody/assets/playlist-BTbXJ2l6.js"></script>
+    <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/firebase-CSKsPba8.js">
+    <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/jamendo-BDwQC619.js">
+    <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/main-BhY9c6qt.js">
+    <link rel="stylesheet" crossorigin href="/Binks-Melody/assets/firebase-Cy68Pb4K.css">
+  </head>
+  <body>
     <header class="top-bar">
-        <div class="logo">
-            <a href="home.html"><img class="logo-photo" src="/Binks-Melody/assets/Logo-C5T0sY-W.png"></a>
-            <p>Bink’s Melody</p>
-        </div>
-        <div class="guest">
-            <span><img class="user-icon" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%3e%3cpath%20fill='%23502753'%20d='M11%207c0%201.66-1.34%203-3%203S5%208.66%205%207s1.34-3%203-3s3%201.34%203%203'/%3e%3cpath%20fill='%23502753'%20fill-rule='evenodd'%20d='M16%208c0%204.42-3.58%208-8%208s-8-3.58-8-8s3.58-8%208-8s8%203.58%208%208M4%2013.75C4.16%2013.484%205.71%2011%207.99%2011c2.27%200%203.83%202.49%203.99%202.75A6.98%206.98%200%200%200%2014.99%208c0-3.87-3.13-7-7-7s-7%203.13-7%207c0%202.38%201.19%204.49%203.01%205.75'%20clip-rule='evenodd'/%3e%3c/svg%3e"></span>
-            <p>Guest</p>
-        </div>
+      <div class="logo">
+        <a href="home.html"
+          ><img class="logo-photo" src="/Binks-Melody/assets/Logo-C5T0sY-W.png"
+        /></a>
+        <p>Bink’s Melody</p>
+      </div>
+      <div class="guest">
+        <span><img class="user-icon" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%3e%3cpath%20fill='%23502753'%20d='M11%207c0%201.66-1.34%203-3%203S5%208.66%205%207s1.34-3%203-3s3%201.34%203%203'/%3e%3cpath%20fill='%23502753'%20fill-rule='evenodd'%20d='M16%208c0%204.42-3.58%208-8%208s-8-3.58-8-8s3.58-8%208-8s8%203.58%208%208M4%2013.75C4.16%2013.484%205.71%2011%207.99%2011c2.27%200%203.83%202.49%203.99%202.75A6.98%206.98%200%200%200%2014.99%208c0-3.87-3.13-7-7-7s-7%203.13-7%207c0%202.38%201.19%204.49%203.01%205.75'%20clip-rule='evenodd'/%3e%3c/svg%3e" /></span>
+        <p>Guest</p>
+      </div>
     </header>
 
     <main class="playlists-page">
-        <aside class="sidebar">
-            <div class="sidebar-content">
-                <img class="logo-photo-sidebar" src="/Binks-Melody/assets/Logo-C5T0sY-W.png">
-                <div class="sidebar-buttons">
-                    <div class="playlists">
-                        <a href="playlists.html">
-                            <p>Playlists</p>
-                            <img class="playlist-icon" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cg%20fill='none'%3e%3cpath%20stroke='%23F1F1F1'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='2'%20d='M20%206h-6m6%204h-6m6%204h-8m8%204H4'/%3e%3cpath%20fill='%23F1F1F1'%20d='M8%2012a2%202%200%201%201-4%200a2%202%200%200%201%204%200'/%3e%3cpath%20stroke='%23F1F1F1'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='2'%20d='M8%2012a2%202%200%201%201-4%200a2%202%200%200%201%204%200m0%200V7m0%200h2V6H8z'/%3e%3c/g%3e%3c/svg%3e">
-                        </a>
-                    </div>
-                    <div class="account">
-                        <a href="account.html">
-                            <p>Account</p>
-                            <img class="account-icon" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cpath%20fill='%23C2CDB3'%20d='M12%204a4%204%200%200%201%204%204a4%204%200%200%201-4%204a4%204%200%200%201-4-4a4%204%200%200%201%204-4m0%2010c4.42%200%208%201.79%208%204v2H4v-2c0-2.21%203.58-4%208-4'/%3e%3c/svg%3e">
-                        </a>
-                    </div>
-                    <div class="settings">
-                        <a href="settings.html">
-                            <p>Settings</p>
-                            <img class="settings-icon" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cpath%20fill='%23C2CDB3'%20d='m9.25%2022l-.4-3.2q-.325-.125-.612-.3t-.563-.375L4.7%2019.375l-2.75-4.75l2.575-1.95Q4.5%2012.5%204.5%2012.338v-.675q0-.163.025-.338L1.95%209.375l2.75-4.75l2.975%201.25q.275-.2.575-.375t.6-.3l.4-3.2h5.5l.4%203.2q.325.125.613.3t.562.375l2.975-1.25l2.75%204.75l-2.575%201.95q.025.175.025.338v.674q0%20.163-.05.338l2.575%201.95l-2.75%204.75l-2.95-1.25q-.275.2-.575.375t-.6.3l-.4%203.2zm2.8-6.5q1.45%200%202.475-1.025T15.55%2012t-1.025-2.475T12.05%208.5q-1.475%200-2.488%201.025T8.55%2012t1.013%202.475T12.05%2015.5'/%3e%3c/svg%3e">
-                        </a>
-                    </div>
-                </div>
-                <hr>
-                    <div class="logout">
-                        <a href="index.html">
-                            <p>Logout</p>
-                            <img class="logout-icon" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cpath%20fill='%23302E31'%20d='M5%2021q-.825%200-1.412-.587T3%2019V5q0-.825.588-1.412T5%203h6q.425%200%20.713.288T12%204t-.288.713T11%205H5v14h6q.425%200%20.713.288T12%2020t-.288.713T11%2021zm12.175-8H10q-.425%200-.712-.288T9%2012t.288-.712T10%2011h7.175L15.3%209.125q-.275-.275-.275-.675t.275-.7t.7-.313t.725.288L20.3%2011.3q.3.3.3.7t-.3.7l-3.575%203.575q-.3.3-.712.288t-.713-.313q-.275-.3-.262-.712t.287-.688z'/%3e%3c/svg%3e">
-                        </a>
-                    </div>
+      <aside class="sidebar">
+        <div class="sidebar-content">
+          <img class="logo-photo-sidebar" src="/Binks-Melody/assets/Logo-C5T0sY-W.png" />
+          <div class="sidebar-buttons">
+            <div class="playlists">
+              <a href="playlists.html">
+                <p>Playlists</p>
+                <img
+                  class="playlist-icon"
+                  src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cg%20fill='none'%3e%3cpath%20stroke='%23F1F1F1'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='2'%20d='M20%206h-6m6%204h-6m6%204h-8m8%204H4'/%3e%3cpath%20fill='%23F1F1F1'%20d='M8%2012a2%202%200%201%201-4%200a2%202%200%200%201%204%200'/%3e%3cpath%20stroke='%23F1F1F1'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='2'%20d='M8%2012a2%202%200%201%201-4%200a2%202%200%200%201%204%200m0%200V7m0%200h2V6H8z'/%3e%3c/g%3e%3c/svg%3e"
+                />
+              </a>
             </div>
-        </aside>
-
-        <div id="player-shell">
-            <div id="player" class="player">
-                <button id="player-toggle" class="player-toggle">
-                    <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cg%20fill='none'%20fill-rule='evenodd'%3e%3cpath%20d='M24%200v24H0V0zM12.593%2023.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02%200%200%200-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z'/%3e%3cpath%20fill='%23F1F1F1'%20d='M12.707%2015.707a1%201%200%200%201-1.414%200L5.636%2010.05A1%201%200%201%201%207.05%208.636l4.95%204.95l4.95-4.95a1%201%200%200%201%201.414%201.414z'/%3e%3c/g%3e%3c/svg%3e" alt="Toggle Player">
-                </button>
-                <canvas id="visualizer"></canvas>
-                <div class="player-header">
-                    <div class="meta">
-                        <img id="p-cover" alt="" />
-                        <div>
-                            <h3 id="p-title">Song Name</h3>
-                            <p id="p-artist">Artist Name</p>
-                        </div>
-                    </div>
-                    <button id="p-add" class="icon-btn" title="Add to playlist">
-                        <img class="add-song" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cg%20fill='%23F1F1F1'%20fill-rule='evenodd'%20clip-rule='evenodd'%3e%3cpath%20d='M2%2012C2%206.477%206.477%202%2012%202s10%204.477%2010%2010s-4.477%2010-10%2010S2%2017.523%202%2012m10-8a8%208%200%201%200%200%2016a8%208%200%200%200%200-16'/%3e%3cpath%20d='M13%207a1%201%200%201%200-2%200v4H7a1%201%200%201%200%200%202h4v4a1%201%200%201%200%202%200v-4h4a1%201%200%201%200%200-2h-4z'/%3e%3c/g%3e%3c/svg%3e">
-                    </button>
-                </div>
-
-                <div class="timeline">
-                    <span id="p-current">0:00</span>
-                    <input type="range" id="p-seek" min="0" max="100" value="0" />
-                    <span id="p-duration">0:00</span>
-                </div>
-
-                <div class="controls">
-                    <button id="p-prev" class="icon-btn" title="Previous">
-                        <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16px'%20height='16px'%20viewBox='0%200%20512%20512'%3e%3cpath%20fill='%23C2CDB3'%20d='m30.71%20229.47l188.87-113a30.54%2030.54%200%200%201%2031.09-.39a33.74%2033.74%200%200%201%2016.76%2029.47v79.05l180.72-108.16a30.54%2030.54%200%200%201%2031.09-.39A33.74%2033.74%200%200%201%20496%20145.52v221A33.73%2033.73%200%200%201%20479.24%20396a30.54%2030.54%200%200%201-31.09-.39L267.43%20287.4v79.08A33.73%2033.73%200%200%201%20250.67%20396a30.54%2030.54%200%200%201-31.09-.39l-188.87-113a31.27%2031.27%200%200%201%200-53Z'/%3e%3c/svg%3e">
-                    </button>
-                    <button id="p-play" class="pill-btn" title="Play/Pause">
-                        <img id="play-icon" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cpath%20fill='%23C2CDB3'%20d='M12%202C6.477%202%202%206.477%202%2012s4.477%2010%2010%2010s10-4.477%2010-10S17.523%202%2012%202m-1%2014H9V8h2zm4%200h-2V8h2z'/%3e%3c/svg%3e">
-                    </button>
-                    <button id="p-next" class="icon-btn" title="Next">
-                        <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%3e%3cpath%20fill='%23C2CDB3'%20d='M2.53%203.956A1%201%200%200%200%201%204.804v6.392a1%201%200%200%200%201.53.848l5.113-3.196c.16-.1.279-.233.357-.383v2.73a1%201%200%200%200%201.53.849l5.113-3.196a1%201%200%200%200%200-1.696L9.53%203.956A1%201%200%200%200%208%204.804v2.731a1%201%200%200%200-.357-.383z'/%3e%3c/svg%3e">
-                    </button>
-                </div>
-
-                <audio id="player-audio" preload="metadata" crossorigin="anonymous"></audio>
+            <div class="account">
+              <a href="account.html">
+                <p>Account</p>
+                <img
+                  class="account-icon"
+                  src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cpath%20fill='%23C2CDB3'%20d='M12%204a4%204%200%200%201%204%204a4%204%200%200%201-4%204a4%204%200%200%201-4-4a4%204%200%200%201%204-4m0%2010c4.42%200%208%201.79%208%204v2H4v-2c0-2.21%203.58-4%208-4'/%3e%3c/svg%3e"
+                />
+              </a>
             </div>
+            <div class="settings">
+              <a href="settings.html">
+                <p>Settings</p>
+                <img
+                  class="settings-icon"
+                  src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cpath%20fill='%23C2CDB3'%20d='m9.25%2022l-.4-3.2q-.325-.125-.612-.3t-.563-.375L4.7%2019.375l-2.75-4.75l2.575-1.95Q4.5%2012.5%204.5%2012.338v-.675q0-.163.025-.338L1.95%209.375l2.75-4.75l2.975%201.25q.275-.2.575-.375t.6-.3l.4-3.2h5.5l.4%203.2q.325.125.613.3t.562.375l2.975-1.25l2.75%204.75l-2.575%201.95q.025.175.025.338v.674q0%20.163-.05.338l2.575%201.95l-2.75%204.75l-2.95-1.25q-.275.2-.575.375t-.6.3l-.4%203.2zm2.8-6.5q1.45%200%202.475-1.025T15.55%2012t-1.025-2.475T12.05%208.5q-1.475%200-2.488%201.025T8.55%2012t1.013%202.475T12.05%2015.5'/%3e%3c/svg%3e"
+                />
+              </a>
+            </div>
+          </div>
+          <hr />
+          <div class="logout">
+            <a href="index.html">
+              <p>Logout</p>
+              <img class="logout-icon" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cpath%20fill='%23302E31'%20d='M5%2021q-.825%200-1.412-.587T3%2019V5q0-.825.588-1.412T5%203h6q.425%200%20.713.288T12%204t-.288.713T11%205H5v14h6q.425%200%20.713.288T12%2020t-.288.713T11%2021zm12.175-8H10q-.425%200-.712-.288T9%2012t.288-.712T10%2011h7.175L15.3%209.125q-.275-.275-.275-.675t.275-.7t.7-.313t.725.288L20.3%2011.3q.3.3.3.7t-.3.7l-3.575%203.575q-.3.3-.712.288t-.713-.313q-.275-.3-.262-.712t.287-.688z'/%3e%3c/svg%3e" />
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <div id="player-shell">
+        <div id="player" class="player">
+          <button id="player-toggle" class="player-toggle">
+            <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cg%20fill='none'%20fill-rule='evenodd'%3e%3cpath%20d='M24%200v24H0V0zM12.593%2023.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02%200%200%200-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z'/%3e%3cpath%20fill='%23F1F1F1'%20d='M12.707%2015.707a1%201%200%200%201-1.414%200L5.636%2010.05A1%201%200%201%201%207.05%208.636l4.95%204.95l4.95-4.95a1%201%200%200%201%201.414%201.414z'/%3e%3c/g%3e%3c/svg%3e" alt="Toggle Player" />
+          </button>
+          <canvas id="visualizer"></canvas>
+          <div class="player-header">
+            <div class="meta">
+              <img id="p-cover" alt="" />
+              <div>
+                <h3 id="p-title">Song Name</h3>
+                <p id="p-artist">Artist Name</p>
+              </div>
+            </div>
+            <button id="p-add" class="icon-btn" title="Add to playlist">
+              <img class="add-song" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cg%20fill='%23F1F1F1'%20fill-rule='evenodd'%20clip-rule='evenodd'%3e%3cpath%20d='M2%2012C2%206.477%206.477%202%2012%202s10%204.477%2010%2010s-4.477%2010-10%2010S2%2017.523%202%2012m10-8a8%208%200%201%200%200%2016a8%208%200%200%200%200-16'/%3e%3cpath%20d='M13%207a1%201%200%201%200-2%200v4H7a1%201%200%201%200%200%202h4v4a1%201%200%201%200%202%200v-4h4a1%201%200%201%200%200-2h-4z'/%3e%3c/g%3e%3c/svg%3e" />
+            </button>
+          </div>
+
+          <div class="timeline">
+            <span id="p-current">0:00</span>
+            <input type="range" id="p-seek" min="0" max="100" value="0" />
+            <span id="p-duration">0:00</span>
+          </div>
+
+          <div class="controls">
+            <button id="p-prev" class="icon-btn" title="Previous">
+              <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16px'%20height='16px'%20viewBox='0%200%20512%20512'%3e%3cpath%20fill='%23C2CDB3'%20d='m30.71%20229.47l188.87-113a30.54%2030.54%200%200%201%2031.09-.39a33.74%2033.74%200%200%201%2016.76%2029.47v79.05l180.72-108.16a30.54%2030.54%200%200%201%2031.09-.39A33.74%2033.74%200%200%201%20496%20145.52v221A33.73%2033.73%200%200%201%20479.24%20396a30.54%2030.54%200%200%201-31.09-.39L267.43%20287.4v79.08A33.73%2033.73%200%200%201%20250.67%20396a30.54%2030.54%200%200%201-31.09-.39l-188.87-113a31.27%2031.27%200%200%201%200-53Z'/%3e%3c/svg%3e" />
+            </button>
+            <button id="p-play" class="pill-btn" title="Play/Pause">
+              <img id="play-icon" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3e%3cpath%20fill='%23C2CDB3'%20d='M12%202C6.477%202%202%206.477%202%2012s4.477%2010%2010%2010s10-4.477%2010-10S17.523%202%2012%202m-1%2014H9V8h2zm4%200h-2V8h2z'/%3e%3c/svg%3e" />
+            </button>
+            <button id="p-next" class="icon-btn" title="Next">
+              <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%3e%3cpath%20fill='%23C2CDB3'%20d='M2.53%203.956A1%201%200%200%200%201%204.804v6.392a1%201%200%200%200%201.53.848l5.113-3.196c.16-.1.279-.233.357-.383v2.73a1%201%200%200%200%201.53.849l5.113-3.196a1%201%200%200%200%200-1.696L9.53%203.956A1%201%200%200%200%208%204.804v2.731a1%201%200%200%200-.357-.383z'/%3e%3c/svg%3e" />
+            </button>
+          </div>
+
+          <audio
+            id="player-audio"
+            preload="metadata"
+            crossorigin="anonymous"
+          ></audio>
+        </div>
+      </div>
+
+      <div class="playlists-detail-page">
+        <div class="playlist-head">
+          <button id="pl-back" class="back-btn" title="Back to Playlists">
+            <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='1024'%20height='1024'%20viewBox='0%200%201024%201024'%3e%3cpath%20fill='%23F1F1F1'%20d='M685.248%20104.704a64%2064%200%200%201%200%2090.496L368.448%20512l316.8%20316.8a64%2064%200%200%201-90.496%2090.496L232.704%20557.248a64%2064%200%200%201%200-90.496l362.048-362.048a64%2064%200%200%201%2090.496%200'/%3e%3c/svg%3e" alt="Back" />
+          </button>
+
+          <div id="pl-icon" class="pl-icon"></div>
+
+          <h1 id="pl-name" class="pl-name">Playlist</h1>
         </div>
 
-        <div class="playlists-detail-page">
-            <div class="playlist-head">
-                <button id="pl-back" class="back-btn" title="Back to Playlists">
-                    <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='1024'%20height='1024'%20viewBox='0%200%201024%201024'%3e%3cpath%20fill='%23F1F1F1'%20d='M685.248%20104.704a64%2064%200%200%201%200%2090.496L368.448%20512l316.8%20316.8a64%2064%200%200%201-90.496%2090.496L232.704%20557.248a64%2064%200%200%201%200-90.496l362.048-362.048a64%2064%200%200%201%2090.496%200'/%3e%3c/svg%3e" alt="Back">
-                </button>
-
-                <div id="pl-icon" class="pl-icon"></div>
-
-                <h1 id="pl-name" class="pl-name">Playlist</h1>
-            </div>
-
-            <div id="pl-songs" class="songs-list"></div>
-        </div>
+        <div id="pl-songs" class="songs-list"></div>
+      </div>
     </main>
 
     <div id="app"></div>
-</body>
+  </body>
 </html>

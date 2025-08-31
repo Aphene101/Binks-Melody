@@ -1,43 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign-Up</title>
-  <script type="module" crossorigin src="/Binks-Melody/assets/signup-ByRytZVc.js"></script>
-  <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/firebase-CSKsPba8.js">
-  <link rel="stylesheet" crossorigin href="/Binks-Melody/assets/firebase-Cy68Pb4K.css">
-</head>
-<body>
+    <script type="module" crossorigin src="/Binks-Melody/assets/signup-ByRytZVc.js"></script>
+    <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/firebase-CSKsPba8.js">
+    <link rel="stylesheet" crossorigin href="/Binks-Melody/assets/firebase-Cy68Pb4K.css">
+  </head>
+  <body>
     <header class="top-bar">
-        <div class="logo">
-            <a href="index.html"><img class="logo-photo" src="/Binks-Melody/assets/Logo-C5T0sY-W.png"></a>
-            <p>Bink’s Melody</p>
-        </div>
-        <div class="guest">
-            <span><img class="user-icon" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%3e%3cpath%20fill='%23502753'%20d='M11%207c0%201.66-1.34%203-3%203S5%208.66%205%207s1.34-3%203-3s3%201.34%203%203'/%3e%3cpath%20fill='%23502753'%20fill-rule='evenodd'%20d='M16%208c0%204.42-3.58%208-8%208s-8-3.58-8-8s3.58-8%208-8s8%203.58%208%208M4%2013.75C4.16%2013.484%205.71%2011%207.99%2011c2.27%200%203.83%202.49%203.99%202.75A6.98%206.98%200%200%200%2014.99%208c0-3.87-3.13-7-7-7s-7%203.13-7%207c0%202.38%201.19%204.49%203.01%205.75'%20clip-rule='evenodd'/%3e%3c/svg%3e"></span>
-            <p>Guest</p>
-        </div>
+      <div class="logo">
+        <a href="index.html"
+          ><img class="logo-photo" src="/Binks-Melody/assets/Logo-C5T0sY-W.png"
+        /></a>
+        <p>Bink’s Melody</p>
+      </div>
+      <div class="guest">
+        <span><img class="user-icon" src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%3e%3cpath%20fill='%23502753'%20d='M11%207c0%201.66-1.34%203-3%203S5%208.66%205%207s1.34-3%203-3s3%201.34%203%203'/%3e%3cpath%20fill='%23502753'%20fill-rule='evenodd'%20d='M16%208c0%204.42-3.58%208-8%208s-8-3.58-8-8s3.58-8%208-8s8%203.58%208%208M4%2013.75C4.16%2013.484%205.71%2011%207.99%2011c2.27%200%203.83%202.49%203.99%202.75A6.98%206.98%200%200%200%2014.99%208c0-3.87-3.13-7-7-7s-7%203.13-7%207c0%202.38%201.19%204.49%203.01%205.75'%20clip-rule='evenodd'/%3e%3c/svg%3e" /></span>
+        <p>Guest</p>
+      </div>
     </header>
 
     <main class="sign-up-page">
-        <h1 class="welcome">Welcome</h1>
-        <div class="sign-up-box">
-            <h2>Please Sign Up</h2>
-            <form id="sign-up-form">
-                <input type="text" id="sign-up-username" placeholder="Username" required />
-                <input type="email" id="sign-up-email" placeholder="Email" required />
-                <input type="password" id="sign-up-password" placeholder="Password" required />
-            </form>
-            <p id="sign-up-error" class="error-message"></p>
-            <h2>
-            <button type="submit" id="sign-up-button" form="sign-up-form" class="sign-up">
-                Sign Up
-            </button>
-            </h2>
-        </div>
+      <h1 class="welcome">Welcome</h1>
+      <div class="sign-up-box">
+        <h2>Please Sign Up</h2>
+        <form id="sign-up-form">
+          <input
+            type="text"
+            id="sign-up-username"
+            placeholder="Username"
+            required
+          />
+          <input type="email" id="sign-up-email" placeholder="Email" required />
+          <input
+            type="password"
+            id="sign-up-password"
+            placeholder="Password"
+            required
+          />
+        </form>
+        <p id="sign-up-error" class="error-message"></p>
+        <h2>
+          <button
+            type="submit"
+            id="sign-up-button"
+            form="sign-up-form"
+            class="sign-up"
+          >
+            Sign Up
+          </button>
+        </h2>
+      </div>
     </main>
 
     <div id="app"></div>
-</body>
+  </body>
 </html>
