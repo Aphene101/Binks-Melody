@@ -1,5 +1,12 @@
 import { db, auth } from "./firebase.js";
-import { doc, getDoc, getDocs, collection } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  getDocs,
+  collection,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
 
 const params = new URLSearchParams(window.location.search);
 let playlistId = params.get("id");
@@ -16,6 +23,88 @@ const iconEl = document.getElementById("pl-icon") || null;
 const songsWrap = document.getElementById("pl-songs") || null;
 
 let currentUserId = null;
+let currentTrack = null;
+
+// Popup for song actions on the playlist page
+const plSongPopup = document.createElement("div");
+plSongPopup.className = "song-popup hidden";
+plSongPopup.innerHTML = `
+  <div class="popup-item" id="pl-removeFromPlaylistBtn">
+    <img src="${import.meta.env.BASE_URL}Media/Delete-Icon.svg" alt="Remove">
+    <span>Remove from Playlist</span>
+  </div>
+`;
+document.body.appendChild(plSongPopup);
+
+function openMorePopup(anchorEl, track) {
+  currentTrack = track;
+  const rect = anchorEl.getBoundingClientRect();
+  plSongPopup.style.top = `${rect.bottom + window.scrollY}px`;
+  plSongPopup.style.left = `${rect.left + window.scrollX}px`;
+  plSongPopup.classList.remove("hidden");
+}
+
+document.addEventListener("click", (e) => {
+  if (!plSongPopup.contains(e.target)) {
+    plSongPopup.classList.add("hidden");
+  }
+});
+
+async function removeTrackFromPlaylist(uid, playlistId, track) {
+  const playlistRef = doc(db, "users", uid, "playlists", playlistId);
+  const snap = await getDoc(playlistRef);
+
+  if (snap.exists() && Array.isArray(snap.data().songs)) {
+    const arr = snap.data().songs || [];
+    const filtered = arr.filter(
+      (s) => (s.id ?? s.audio) !== (track.id ?? track.audio)
+    );
+    await updateDoc(playlistRef, { songs: filtered });
+  } else {
+    if (track.id) {
+      const songDoc = doc(
+        db,
+        "users",
+        uid,
+        "playlists",
+        playlistId,
+        "songs",
+        track.id
+      );
+      await deleteDoc(songDoc);
+    } else {
+      const songsCol = collection(
+        db,
+        "users",
+        uid,
+        "playlists",
+        playlistId,
+        "songs"
+      );
+      const songsSnap = await getDocs(songsCol);
+      const match = songsSnap.docs.find(
+        (d) => (d.data().id ?? d.data().audio) === (track.id ?? track.audio)
+      );
+      if (match) await deleteDoc(match.ref);
+    }
+  }
+}
+
+document
+  .getElementById("pl-removeFromPlaylistBtn")
+  ?.addEventListener("click", async () => {
+    plSongPopup.classList.add("hidden");
+    if (!currentUserId || !playlistId || !currentTrack) return;
+    await removeTrackFromPlaylist(currentUserId, playlistId, currentTrack);
+    const rows = [...document.querySelectorAll(".song-item")];
+    const row = rows.find(
+      (r) =>
+        r.querySelector(".song-title")?.textContent ===
+        (currentTrack.name || currentTrack.title)
+    );
+    row?.parentElement?.nextElementSibling?.remove?.();
+    row?.parentElement?.remove?.();
+  });
 
 backBtn?.addEventListener("click", () => {
   window.location.href = "playlists.html";
@@ -107,11 +196,7 @@ function renderSongs(songs) {
 
     row.querySelector(".song-menu")?.addEventListener("click", (e) => {
       e.stopPropagation();
-      if (typeof openMorePopup === "function") {
-        openMorePopup(e.currentTarget, track);
-      } else {
-        console.warn("openMorePopup is not available on this page.");
-      }
+      openMorePopup(e.currentTarget, track);
     });
 
     row.addEventListener("click", () => {

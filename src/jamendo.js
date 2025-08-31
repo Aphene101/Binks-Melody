@@ -3,7 +3,9 @@ import {
   collection,
   getDocs,
   doc,
+  getDoc,
   updateDoc,
+  deleteDoc,
   arrayUnion,
 } from "firebase/firestore";
 
@@ -55,6 +57,11 @@ songPopup.innerHTML = `
   <div class="popup-item" id="addToPlaylistBtn">
     <img src="${import.meta.env.BASE_URL}Media/Purple-Add-Icon.svg" alt="Add">
     <span>Add to Playlist</span>
+  </div>
+  <hr>
+  <div class="popup-item" id="removeFromPlaylistBtn">
+    <img src="${import.meta.env.BASE_URL}Media/Delete-Icon.svg" alt="Remove">
+     <span>Remove from Playlist</span>
   </div>
 `;
 document.body.appendChild(songPopup);
@@ -231,11 +238,120 @@ async function handleAddToPlaylist() {
   }, 0);
 }
 
-const addToPlaylistBtn = document.getElementById("addToPlaylistBtn");
-if (addToPlaylistBtn)
-  addToPlaylistBtn.addEventListener("click", handleAddToPlaylist);
-const pAdd = document.getElementById("p-add");
-if (pAdd) pAdd.addEventListener("click", handleAddToPlaylist);
+async function removeTrackFromPlaylist(uid, playlistId, track) {
+  const playlistRef = doc(db, "users", uid, "playlists", playlistId);
+  const snap = await getDoc(playlistRef);
+
+  if (snap.exists() && Array.isArray(snap.data().songs)) {
+    const arr = snap.data().songs || [];
+    const filtered = arr.filter(
+      (s) => (s.id ?? s.audio) !== (track.id ?? track.audio)
+    );
+    await updateDoc(playlistRef, { songs: filtered });
+  } else {
+    if (track.id) {
+      await deleteDoc(
+        doc(db, "users", uid, "playlists", playlistId, "songs", track.id)
+      );
+    } else {
+      const songsCol = collection(
+        db,
+        "users",
+        uid,
+        "playlists",
+        playlistId,
+        "songs"
+      );
+      const songsSnap = await getDocs(songsCol);
+      const match = songsSnap.docs.find(
+        (d) => (d.data().id ?? d.data().audio) === (track.id ?? track.audio)
+      );
+      if (match) await deleteDoc(match.ref);
+    }
+  }
+}
+
+async function handleRemoveFromPlaylist() {
+  songPopup.classList.add("hidden");
+  if (!currentUserId || !currentTrack) return;
+
+  const chooser = document.createElement("div");
+  chooser.className = "playlist-chooser";
+
+  const playlistsCol = collection(db, "users", currentUserId, "playlists");
+  const snap = await getDocs(playlistsCol);
+
+  if (snap.empty) {
+    const none = document.createElement("div");
+    none.className = "playlist-row";
+    none.innerHTML = `<p>No playlists found</p>`;
+    chooser.appendChild(none);
+  } else {
+    snap.docs.forEach((pl, index) => {
+      const row = document.createElement("div");
+      row.className = "playlist-row";
+      row.innerHTML = `
+        <div class="playlist-icon"></div>
+        <p>${pl.data().name || "Untitled Playlist"}</p>
+        <span class="add-icon"><img src="${
+          import.meta.env.BASE_URL
+        }Media/Delete-Icon.svg" alt="Remove"></span>
+      `;
+
+      const iconEl = row.querySelector(".playlist-icon");
+      const cover =
+        pl.data().songs?.[0]?.album_image ||
+        pl.data().songs?.[0]?.albumArt ||
+        pl.data().songs?.[0]?.cover ||
+        "";
+      if (cover) {
+        iconEl.style.backgroundImage = `url(${cover})`;
+        iconEl.style.backgroundColor = "transparent";
+        iconEl.style.backgroundSize = "cover";
+        iconEl.style.backgroundPosition = "center";
+      } else {
+        iconEl.style.backgroundImage = "none";
+      }
+
+      row.addEventListener("click", async () => {
+        await removeTrackFromPlaylist(currentUserId, pl.id, currentTrack);
+        slideOutAndRemove(chooser);
+      });
+      chooser.appendChild(row);
+
+      if (index < snap.docs.length - 1) {
+        const sep = document.createElement("hr");
+        sep.className = "playlist-separator";
+        chooser.appendChild(sep);
+      }
+    });
+  }
+
+  document.body.appendChild(chooser);
+  chooser.classList.add("show");
+
+  function slideOutAndRemove(element) {
+    element.classList.remove("show");
+    element.classList.add("hide");
+    element.addEventListener("animationend", () => element.remove(), {
+      once: true,
+    });
+  }
+
+  setTimeout(() => {
+    document.addEventListener("click", () => slideOutAndRemove(chooser), {
+      once: true,
+    });
+  }, 0);
+}
+
+document
+  .getElementById("addToPlaylistBtn")
+  .addEventListener("click", handleAddToPlaylist);
+document.getElementById("p-add").addEventListener("click", handleAddToPlaylist);
+document
+  .getElementById("removeFromPlaylistBtn")
+  ?.addEventListener("click", handleRemoveFromPlaylist);
 
 function initVisualizer() {
   const audioPlayer = document.getElementById("player-audio");

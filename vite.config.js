@@ -10,8 +10,6 @@ export default defineConfig({
         playlists: "playlists.html",
         playlist: "playlist.html",
         signup: "signup.html",
-        account: "account.html",
-        settings: "settings.html",
       },
     },
   },
