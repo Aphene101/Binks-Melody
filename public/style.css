@@ -239,12 +239,14 @@ body {
 }
 
 .grid-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-around;
   padding: 0 10vw;
   gap: 2rem 7vw;
+  align-items: stretch;
+  justify-items: stretch;
 }
 
 .card {
@@ -255,13 +257,14 @@ body {
   background-color: #f1f1f1;
   color: #502753;
   width: 20vw;
-  height: auto;
   border-radius: 15px;
-  padding: 2.5rem clamp(4rem, 4vw, 2.5rem);
+  height: 160px;
+  padding: 0 1rem;
   font-size: clamp(0.5rem, 4vw, 2.5rem);
   font-weight: 1;
   font-family: "Open Sans", sans-serif;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
 }
 
 .card:hover {
@@ -974,6 +977,10 @@ button#createPlaylistBtn:hover {
   font-weight: 400;
   letter-spacing: 0.5px;
   user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 #p-artist {

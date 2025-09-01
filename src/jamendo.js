@@ -568,3 +568,25 @@ function drawVisualizer() {
     );
   }
 }
+
+export async function getTopTracksByTag(tag, limit = 10) {
+  const url = `https://api.jamendo.com/v3.0/tracks/?client_id=${CLIENT_ID}&format=json&limit=${
+    limit + 6
+  }&tags=${encodeURIComponent(tag)}&order=popularity_total&include=musicinfo`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("Jamendo tag fetch failed");
+  const json = await res.json();
+  const rows = json?.results || [];
+  const tracks = rows
+    .map((t) => ({
+      id: t.id,
+      name: t.name,
+      artist_name: t.artist_name,
+      album_image: t.album_image,
+      audio: t.audio || t.audiodownload,
+    }))
+    .filter((t) => !!t.audio)
+    .slice(0, limit);
+
+  return tracks;
+}

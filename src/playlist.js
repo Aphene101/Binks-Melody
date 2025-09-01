@@ -1,3 +1,4 @@
+import { getTopTracksByTag } from "./jamendo.js";
 import { db, auth } from "./firebase.js";
 import {
   doc,
@@ -9,10 +10,11 @@ import {
 } from "firebase/firestore";
 
 const params = new URLSearchParams(window.location.search);
+const genre = params.get("genre");
 let playlistId = params.get("id");
 console.log("Playlist ID from URL:", playlistId);
 
-if (!playlistId) {
+if (!playlistId && !genre) {
   alert("No playlist selected. Redirecting to playlists page.");
   window.location.href = "./playlists.html";
 }
@@ -107,10 +109,19 @@ document
   });
 
 backBtn?.addEventListener("click", () => {
-  window.location.href = "playlists.html";
+  if (genre) {
+    window.location.href = "home.html";
+  } else {
+    window.location.href = "playlists.html";
+  }
 });
 
 auth.onAuthStateChanged(async (user) => {
+  if (genre) {
+    await loadGenrePlaylist(genre);
+    return;
+  }
+
   if (!playlistId) {
     console.warn("No playlist id found");
     return;
@@ -154,6 +165,25 @@ async function loadPlaylist(uid, id) {
     }
   }
   console.log(songs);
+  renderSongs(songs);
+}
+
+async function loadGenrePlaylist(tag) {
+  const pretty = tag.charAt(0).toUpperCase() + tag.slice(1);
+  nameEl.textContent = pretty;
+
+  const songs = await getTopTracksByTag(tag, 10);
+
+  const cover = songs[0]?.album_image || "";
+  if (cover) {
+    iconEl.style.backgroundImage = `url(${cover})`;
+    iconEl.style.backgroundColor = "transparent";
+    iconEl.style.backgroundSize = "cover";
+    iconEl.style.backgroundPosition = "center";
+  } else {
+    iconEl.style.backgroundImage = "none";
+  }
+
   renderSongs(songs);
 }
 
