@@ -7,6 +7,7 @@ import {
   collection,
   updateDoc,
   deleteDoc,
+  arrayUnion,
 } from "firebase/firestore";
 
 const FALLBACK_IMG =
@@ -33,7 +34,14 @@ let currentTrack = null;
 // Popup for song actions on the playlist page
 const plSongPopup = document.createElement("div");
 plSongPopup.className = "song-popup hidden";
-plSongPopup.innerHTML = `
+plSongPopup.innerHTML = genre
+  ? `
+  <div class="popup-item" id="pl-addToPlaylistBtn">
+    <img src="${import.meta.env.BASE_URL}Media/Purple-Add-Icon.svg" alt="Add">
+    <span>Add to Playlist</span>
+  </div>
+`
+  : `
   <div class="popup-item" id="pl-removeFromPlaylistBtn">
     <img src="${import.meta.env.BASE_URL}Media/Delete-Icon.svg" alt="Remove">
     <span>Remove from Playlist</span>
@@ -119,7 +127,25 @@ backBtn?.addEventListener("click", () => {
   }
 });
 
+document
+  .getElementById("pl-addToPlaylistBtn")
+  ?.addEventListener("click", async () => {
+    plSongPopup.classList.add("hidden");
+
+    // hand the selected track to jamendo.js and reuse its chooser
+    if (typeof window.__bmSetCurrentTrack === "function") {
+      window.__bmSetCurrentTrack(currentTrack);
+    }
+    if (typeof window.__bmAddToPlaylist === "function") {
+      window.__bmAddToPlaylist();
+    } else {
+      alert("Add-to-playlist is unavailable on this page.");
+    }
+  });
+
 auth.onAuthStateChanged(async (user) => {
+  if (user) currentUserId = user.uid;
+
   if (genre) {
     await loadGenrePlaylist(genre);
     return;

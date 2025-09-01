@@ -243,6 +243,13 @@ async function handleAddToPlaylist() {
   }, 0);
 }
 
+window.__bmSetCurrentTrack = (t) => {
+  currentTrack = t;
+};
+window.__bmAddToPlaylist = () => {
+  handleAddToPlaylist();
+};
+
 async function removeTrackFromPlaylist(uid, playlistId, track) {
   const playlistRef = doc(db, "users", uid, "playlists", playlistId);
   const snap = await getDoc(playlistRef);
