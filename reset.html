@@ -3,16 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <script type="module" crossorigin src="/Binks-Melody/assets/index-C6pDM_xw.js"></script>
+    <title>Reset Password</title>
+    <script type="module" crossorigin src="/Binks-Melody/assets/reset-YALLdehJ.js"></script>
     <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/firebase-DxkpUW3f.js">
-    <link rel="modulepreload" crossorigin href="/Binks-Melody/assets/main-CILTSNrz.js">
     <link rel="stylesheet" crossorigin href="/Binks-Melody/assets/firebase-TU0iFVDw.css">
   </head>
   <body>
     <header class="top-bar">
       <div class="logo">
-        <img class="logo-photo" src="/Binks-Melody/assets/Logo-C5T0sY-W.png" />
+        <a href="index.html"
+          ><img class="logo-photo" src="/Binks-Melody/assets/Logo-C5T0sY-W.png"
+        /></a>
         <p>Bink’s Melody</p>
       </div>
       <div class="guest">
@@ -20,26 +21,26 @@
         <p>Guest</p>
       </div>
     </header>
-
     <main class="login-page">
-      <h1 class="welcome">Welcome</h1>
+      <h1 class="welcome">Reset Password</h1>
       <div class="login-box">
-        <h2>Please Login</h2>
-        <input type="email" id="login-email" placeholder="Email" />
-        <input type="password" id="login-password" placeholder="Password" />
-        <div id="login-error" style="color: red; margin-top: 10px"></div>
-        <h2>
-          <button class="login" id="login-button" href="home.html">
-            Login
-          </button>
-        </h2>
-        <div class="links">
-          <a id="forgot-password" href="#">Forgot Password?</a>
-          <a href="signup.html">Sign-up</a>
-        </div>
+        <h2>Set a New Password</h2>
+
+        <form id="reset-form">
+          <input
+            id="new-password"
+            type="password"
+            placeholder="New password"
+            minlength="6"
+            required
+          />
+          <button type="submit" class="login">Update Password</button>
+        </form>
+
+        <p id="reset-status" class="error-message" role="status"></p>
       </div>
     </main>
 
-    <div id="app"></div>
+    <div id="app"></div>
   </body>
 </html>
