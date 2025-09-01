@@ -1188,8 +1188,8 @@ button#createPlaylistBtn:hover {
   }
 
   .section-title {
-    font-size: 22px;
-    margin: 16px 12px 12px;
+    font-size: 26px;
+    margin: 18px 12px 14px;
   }
 
   .home-page {
@@ -1199,9 +1199,10 @@ button#createPlaylistBtn:hover {
   .home-page .grid-container {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    padding: 0 12px;
+    gap: 14px;
+    padding: 0 8px;
     justify-items: stretch;
+    margin-top: 6px;
   }
 
   .reset form {
@@ -1217,9 +1218,9 @@ button#createPlaylistBtn:hover {
 
   .card {
     width: 100%;
-    height: 120px;
-    padding: 8px;
-    font-size: clamp(14px, 5vw, 18px);
+    height: 126px;
+    padding: 10px;
+    font-size: clamp(15px, 5vw, 19px);
   }
 
   .overlay.active {
@@ -1230,8 +1231,9 @@ button#createPlaylistBtn:hover {
     position: fixed;
     top: 56px;
     right: -100%;
+    bottom: 0;
     width: 100vw;
-    height: calc(100vh - 56px);
+    height: auto;
     margin: 0;
     border-radius: 0;
     border: none;
@@ -1239,6 +1241,7 @@ button#createPlaylistBtn:hover {
     z-index: 1001;
     overflow-y: auto;
     transition: right 0.3s ease;
+    padding-bottom: 16px;
   }
 
   .sidebar.show {
@@ -1254,6 +1257,10 @@ button#createPlaylistBtn:hover {
   }
 
   .sidebar-buttons div a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-size: 16px;
     padding: 12px 16px;
   }
@@ -1280,7 +1287,7 @@ button#createPlaylistBtn:hover {
   #search-results {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 10px;
   }
 
   .song-item {
@@ -1304,6 +1311,14 @@ button#createPlaylistBtn:hover {
     min-width: 0;
   }
 
+  .song-title,
+  .song-artist {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
   .song-menu {
     display: flex;
     align-items: center;
@@ -1316,26 +1331,111 @@ button#createPlaylistBtn:hover {
     gap: 12px;
   }
 
+  .playlists-title {
+    font-size: 24px;
+  }
+
+  .playlist {
+    width: 100%;
+  }
+
+  .more-icon {
+    margin-left: auto;
+  }
+
+  .song-separator,
+  .playlists hr {
+    width: 100%;
+    margin: 0;
+  }
+
   #player {
     position: sticky;
     bottom: 0;
     width: 100%;
-    padding: 10px;
+    padding: 12px;
+    height: auto;
     backdrop-filter: saturate(140%) blur(8px);
+  }
+
+  #visualizer {
+    height: 170px;
+  }
+
+  .player-header {
+    gap: 8px;
+  }
+
+  .player-header .meta {
+    flex: 1;
+    min-width: 0;
+  }
+
+  #p-cover {
+    width: 50px;
+    height: 50px;
+    margin-right: 8px;
+  }
+
+  #p-title {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  #p-artist {
+    font-size: 11px;
+  }
+
+  .icon-btn .add-song {
+    width: 24px;
   }
 
   #player .controls {
     gap: 8px;
   }
 
-  #player .time,
-  #p-current,
-  #p-duration {
-    font-size: 12px;
+  .timeline {
+    grid-template-columns: 40px 1fr 40px;
+    gap: 6px;
+    margin: 10px 0;
   }
 
   #p-seek {
     height: 6px;
+  }
+
+  .controls {
+    gap: 10px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+
+  .pill-btn {
+    width: auto;
+    height: auto;
+  }
+
+  .pill-btn img {
+    width: 38px;
+  }
+
+  .icon-btn img {
+    width: 24px;
+  }
+
+  .player-toggle {
+    margin-top: 0;
+  }
+
+  .player-toggle img {
+    width: 24px;
+    height: 24px;
+  }
+
+  #player .time,
+  #p-current,
+  #p-duration {
+    font-size: 12px;
   }
 
   .add-playlist {
