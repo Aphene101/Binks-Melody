@@ -1560,4 +1560,12 @@ button#createPlaylistBtn:hover {
     font-size: clamp(20px, 7vw, 70px);
     margin-bottom: 10px;
   }
+
+  #sign-up-form input {
+    width: 80%;
+  }
+
+  #reset-form {
+    width: 100%;
+  }
 }
