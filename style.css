@@ -1199,8 +1199,8 @@ button#createPlaylistBtn:hover {
   .home-page .grid-container {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-    padding: 0 8px;
+    gap: 16px;
+    padding: 0 6px;
     justify-items: stretch;
     margin-top: 6px;
   }
@@ -1284,8 +1284,7 @@ button#createPlaylistBtn:hover {
     z-index: 1100;
   }
 
-  .songs-list,
-  #search-results {
+  .songs-list {
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
@@ -1308,6 +1307,10 @@ button#createPlaylistBtn:hover {
     border-radius: 8px;
   }
 
+  .song-left {
+    min-width: 0;
+  }
+
   .song-info {
     min-width: 0;
   }
@@ -1324,12 +1327,6 @@ button#createPlaylistBtn:hover {
     display: flex;
     align-items: center;
     gap: 8px;
-  }
-
-  .playlists-page .playlists {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
   }
 
   .playlists-title {
@@ -1486,12 +1483,6 @@ button#createPlaylistBtn:hover {
   select,
   textarea {
     font-size: 16px;
-  }
-
-  #search-results {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
   }
 
   .search-input {
