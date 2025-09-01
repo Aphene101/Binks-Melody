@@ -442,7 +442,7 @@ div.playlists a:hover {
 hr {
   height: 0;
   border: 0;
-  border-top: 2px solid #c2cdb3;
+  border-top: 1px solid #c2cdb3;
 }
 
 .playlist {
@@ -796,8 +796,7 @@ button#createPlaylistBtn:hover {
 
 .song-popup {
   position: absolute;
-  background: #fff;
-  border: 1px solid #ccc;
+  background: #f1f1f1;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   padding: 8px;
@@ -821,6 +820,10 @@ button#createPlaylistBtn:hover {
 
 .song-popup .popup-item:hover {
   background: #f5f5f5;
+}
+
+.song-popup hr {
+  border-top: 1px solid #502753;
 }
 
 /* Add to Playlist */
@@ -866,7 +869,7 @@ button#createPlaylistBtn:hover {
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
   padding: 20px 0;
   z-index: 1000;
-  max-height: 60vh;
+  max-height: 55vh;
   overflow-y: auto;
 }
 
@@ -886,7 +889,7 @@ button#createPlaylistBtn:hover {
 
 .playlist-row p {
   margin: 0;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   color: #302e31;
   flex-grow: 1;
   padding-left: 2vw;
@@ -1218,9 +1221,9 @@ button#createPlaylistBtn:hover {
 
   .card {
     width: 100%;
-    height: 126px;
-    padding: 10px;
-    font-size: clamp(15px, 5vw, 19px);
+    height: 140px;
+    padding: 12px;
+    font-size: clamp(16px, 5.2vw, 20px);
   }
 
   .overlay.active {
@@ -1229,7 +1232,7 @@ button#createPlaylistBtn:hover {
 
   .sidebar {
     position: fixed;
-    top: 70px;
+    top: 56px;
     right: -100%;
     bottom: 0;
     width: 100vw;
@@ -1238,7 +1241,6 @@ button#createPlaylistBtn:hover {
     margin-top: 0;
     border-radius: 0;
     border: none;
-    background-color: #c2cdb3;
     z-index: 1001;
     overflow-y: auto;
     transition: right 0.3s ease;
@@ -1247,6 +1249,7 @@ button#createPlaylistBtn:hover {
 
   .sidebar.show {
     right: 0;
+    top: 56px;
   }
 
   .sidebar-content {
@@ -1317,6 +1320,7 @@ button#createPlaylistBtn:hover {
 
   .song-title,
   .song-artist {
+    display: block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1330,15 +1334,28 @@ button#createPlaylistBtn:hover {
   }
 
   .playlists-title {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   .playlist {
     width: 100%;
   }
 
+  .playlist .pl-icon {
+    width: 48px;
+    height: 48px;
+  }
+
   .more-icon {
     margin-left: auto;
+  }
+
+  .playlist .more-icon img {
+    height: 22px;
+  }
+  .new-playlist .add-icon img {
+    width: 44px;
+    height: 44px;
   }
 
   .song-separator,
@@ -1422,6 +1439,22 @@ button#createPlaylistBtn:hover {
 
   .icon-btn img {
     width: 24px;
+  }
+
+  .pill-btn img:active,
+  .icon-btn img:active,
+  .icon-btn .add-song:active {
+    width: inherit !important;
+  }
+
+  .login:hover,
+  .sign-up:hover,
+  .reset:hover,
+  .sidebar-buttons a:hover,
+  .playlist-row:hover,
+  .playlist:hover,
+  .new-playlist:hover {
+    transform: none !important;
   }
 
   .player-toggle {
