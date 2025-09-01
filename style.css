@@ -1158,16 +1158,58 @@ button#createPlaylistBtn:hover {
   height: 50px;
 }
 
-@media (max-width: 768px) {
-  .top-bar {
-    flex-direction: row;
-    text-align: center;
-    padding: 0.5rem;
-  }
+/* Responsive Styling */
+@media (max-width: 640px) {
+  .home-page .grid-container {
+    .reset form {
+      width: min(92vw, 520px);
+      margin-inline: auto;
+      padding: 16px;
+      border-radius: 12px;
+    }
 
-  .logo,
-  .user-icon {
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
+    input,
+    select,
+    textarea {
+      font-size: 16px;
+    }
+
+    #search-results {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .search-input {
+      width: 100%;
+    }
+
+    .song-popup,
+    .playlist-popup,
+    .more-popup,
+    .playlist-chooser {
+      width: min(92vw, 420px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    button,
+    .btn,
+    .icon-btn {
+      min-height: 40px;
+      min-width: 40px;
+    }
+
+    h1,
+    .pl-name {
+      font-size: clamp(18px, 6vw, 24px);
+    }
+
+    h2,
+    .playlists-title,
+    .section-title {
+      font-size: clamp(16px, 5.2vw, 20px);
+      margin-bottom: 10px;
+    }
   }
 }
