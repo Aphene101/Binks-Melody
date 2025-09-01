@@ -90,7 +90,8 @@ body {
 }
 
 .login-box h2 button,
-.sign-up-box button {
+.sign-up-box button,
+.reset {
   border: 0;
   color: #f1f1f1;
   font-size: 20px;
@@ -104,6 +105,12 @@ body {
   overflow: hidden;
 }
 
+.reset {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
+
 .login,
 .sign-up {
   color: #431347;
@@ -111,14 +118,16 @@ body {
 }
 
 .login:hover,
-.sign-up:hover {
+.sign-up:hover,
+.reset:hover {
   transform: scale(1.05);
   background-color: #c2cdb3;
   color: #302e31;
 }
 
 .login:active,
-.sign-up:active {
+.sign-up:active,
+.reset:active {
   transform: scale(1);
 }
 
@@ -170,6 +179,15 @@ body {
 .links a:hover {
   transform: scale(1.05);
   color: #585d51;
+}
+
+#reset-status {
+  margin-top: 4px;
+}
+
+#new-password {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 /*Home Page*/
