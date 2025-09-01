@@ -513,11 +513,11 @@ if (searchInput) {
       displayResults(tracks);
       if (sectionTitle) sectionTitle.style.display = "none";
       if (gridContainer) gridContainer.style.display = "none";
-      if (resultsContainer) resultsContainer.style.display = "flex";
+      if (resultsContainer) resultsContainer.style.display = "block";
     } else {
       if (resultsContainer) resultsContainer.innerHTML = "";
-      if (sectionTitle) sectionTitle.style.display = "flex";
-      if (gridContainer) gridContainer.style.display = "flex";
+      if (sectionTitle) sectionTitle.style.display = "";
+      if (gridContainer) gridContainer.style.display = "";
       if (resultsContainer) resultsContainer.style.display = "none";
     }
   });
@@ -551,8 +551,8 @@ function drawVisualizer() {
   canvas.width = canvas.offsetWidth;
   canvas.height = canvas.offsetHeight;
 
-  const gap = 10;
-  const barCount = 35;
+  const gap = 8;
+  const barCount = 24;
   const step = Math.floor(dataArray.length / barCount);
   const barWidth = canvas.width / barCount - gap;
 
@@ -574,7 +574,7 @@ function drawVisualizer() {
       canvas.height - barHeight,
       barWidth,
       barHeight,
-      10
+      6
     );
   }
 }
