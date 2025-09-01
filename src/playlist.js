@@ -9,6 +9,9 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
+const FALLBACK_IMG =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAuMBgVdPxT8AAAAASUVORK5CYII=";
+
 const params = new URLSearchParams(window.location.search);
 const genre = params.get("genre");
 let playlistId = params.get("id");
@@ -203,7 +206,9 @@ function renderSongs(songs) {
     row.innerHTML = `
       <div class="song-left">
         <div class="song-thumb">
-          <img src="${cover}" alt="">
+          <img src="${
+            cover || FALLBACK_IMG
+          }" alt="" onerror="this.src='${FALLBACK_IMG}'">
         </div>
         <div class="song-info">
           <span class="song-title">${title}</span>

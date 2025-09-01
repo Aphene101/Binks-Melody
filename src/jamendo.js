@@ -11,6 +11,9 @@ import {
 
 const CLIENT_ID = "804bfeee";
 
+const COVER_FALLBACK =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAuMBgVdPxT8AAAAASUVORK5CYII=";
+
 let currentUserId = null;
 auth.onAuthStateChanged((user) => {
   if (user) currentUserId = user.uid;
@@ -112,7 +115,9 @@ function displayResults(tracks) {
     trackDiv.innerHTML = `
         <div class="song-left">
             <div class="song-thumb">
-            <img src="${track.album_image}" alt="Album Art">
+            <img src="${
+              track.album_image || COVER_FALLBACK
+            }" alt="Album Art" onerror="this.src='${COVER_FALLBACK}'">
             </div>
             <div class="song-info">
             <span class="song-title">${track.name}</span>
@@ -396,7 +401,12 @@ function playTrack(audioUrl, track, index, playlist) {
 
   songTitle.textContent = track.name;
   songArtist.textContent = track.artist_name;
-  songThumb.src = track.album_image;
+  if (!track.album_image) {
+    songThumb.src = COVER_FALLBACK;
+  } else {
+    songThumb.onerror = () => (songThumb.src = COVER_FALLBACK);
+    songThumb.src = track.album_image;
+  }
   playIcon.src = `${import.meta.env.BASE_URL}Media/Pause-icon.svg`;
 
   document.getElementById("player").classList.add("open");
