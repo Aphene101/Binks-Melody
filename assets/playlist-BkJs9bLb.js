@@ -1,0 +1,24 @@
+import{b as S,e as A,i as u,f as E,h as C,j as P,u as T,k as h}from"./firebase-BzuBFn-M.js";import{g as k}from"./jamendo-CqSagkzU.js";import"./main-8g6dBqTf.js";const b="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAuMBgVdPxT8AAAAASUVORK5CYII=",B=new URLSearchParams(window.location.search),y=B.get("genre");let p=B.get("id");console.log("Playlist ID from URL:",p);!p&&!y&&(alert("No playlist selected. Redirecting to playlists page."),window.location.href="./playlists.html");const I=document.getElementById("pl-back")||null,v=document.getElementById("pl-name")||null,l=document.getElementById("pl-icon")||null,f=document.getElementById("pl-songs")||null;let w=null,g=null;const i=document.createElement("div");i.className="song-popup hidden";i.innerHTML=y?`
+  <div class="popup-item" id="pl-addToPlaylistBtn">
+    <img src="/Binks-Melody/Media/Purple-Add-Icon.svg" alt="Add">
+    <span>Add to Playlist</span>
+  </div>
+`:`
+  <div class="popup-item" id="pl-removeFromPlaylistBtn">
+    <img src="/Binks-Melody/Media/Delete-Icon.svg" alt="Remove">
+    <span>Remove from Playlist</span>
+  </div>
+`;document.body.appendChild(i);function M(e,t){g=t;const n=e.getBoundingClientRect();i.style.top=`${n.bottom+window.scrollY}px`,i.style.left=`${n.left+window.scrollX}px`,i.classList.remove("hidden")}document.addEventListener("click",e=>{i.contains(e.target)||i.classList.add("hidden")});async function _(e,t,n){const a=A(u,"users",e,"playlists",t),s=await E(a);if(s.exists()&&Array.isArray(s.data().songs)){const c=(s.data().songs||[]).filter(d=>(d.id??d.audio)!==(n.id??n.audio));await T(a,{songs:c})}else if(n.id){const o=A(u,"users",e,"playlists",t,"songs",n.id);await h(o)}else{const o=C(u,"users",e,"playlists",t,"songs"),d=(await P(o)).docs.find(m=>(m.data().id??m.data().audio)===(n.id??n.audio));d&&await h(d.ref)}}document.getElementById("pl-removeFromPlaylistBtn")?.addEventListener("click",async()=>{if(i.classList.add("hidden"),!w||!p||!g)return;await _(w,p,g);const t=[...document.querySelectorAll(".song-item")].find(n=>n.querySelector(".song-title")?.textContent===(g.name||g.title));t?.parentElement?.nextElementSibling?.remove?.(),t?.parentElement?.remove?.()});I?.addEventListener("click",()=>{y?window.location.href="home.html":window.location.href="playlists.html"});document.getElementById("pl-addToPlaylistBtn")?.addEventListener("click",async()=>{i.classList.add("hidden"),typeof window.__bmSetCurrentTrack=="function"&&window.__bmSetCurrentTrack(g),typeof window.__bmAddToPlaylist=="function"?window.__bmAddToPlaylist():alert("Add-to-playlist is unavailable on this page.")});S.onAuthStateChanged(async e=>{if(e&&(w=e.uid),y){await R(y);return}if(!p){console.warn("No playlist id found");return}e&&(w=e.uid,await $(e.uid,p))});async function $(e,t){console.log("Loading playlists");const n=A(u,"users",e,"playlists",t),a=await E(n);if(!a.exists())return;console.log(a+"The snap is above");const s=a.data();v&&(v.textContent=s.name||"Untitled Playlist");let o=[];if(Array.isArray(s.songs)&&s.songs.length)o=s.songs;else{const d=C(u,"users",e,"playlists",t,"songs");o=(await P(d)).docs.map(r=>({id:r.id,...r.data()}))}const c=o[0]?.album_image||o[0]?.albumArt||o[0]?.cover||"";l&&(c?(l.style.backgroundImage=`url(${c})`,l.style.backgroundColor="transparent",l.style.backgroundSize="cover",l.style.backgroundPosition="center"):l.style.backgroundImage="none"),console.log(o),L(o)}async function R(e){const t=e.charAt(0).toUpperCase()+e.slice(1);v.textContent=t;const n=await k(e,10),a=n[0]?.album_image||"";a?(l.style.backgroundImage=`url(${a})`,l.style.backgroundColor="transparent",l.style.backgroundSize="cover",l.style.backgroundPosition="center"):l.style.backgroundImage="none",L(n)}function L(e){f&&(f.innerHTML="",e.forEach((t,n)=>{const a=document.createElement("div"),s=document.createElement("div");s.className="song-item";const o=t.name||t.title||"Unknown Title",c=t.artist_name||t.artist||"Unknown Artist",d=t.album_image||t.albumArt||t.cover||"";s.innerHTML=`
+      <div class="song-left">
+        <div class="song-thumb">
+          <img src="${d||b}" alt="" onerror="this.src='${b}'">
+        </div>
+        <div class="song-info">
+          <span class="song-title">${o}</span>
+          <span class="song-artist">${c}</span>
+        </div>
+      </div>
+      <button class="song-menu">
+        <img class="more-icon" src="/Binks-Melody/Media/More-icon.svg">
+      </button>
+    `,a.appendChild(s);const m=document.createElement("hr");m.classList.add("song-separator"),f.appendChild(a),f.appendChild(m),s.querySelector(".song-menu")?.addEventListener("click",r=>{r.stopPropagation(),M(r.currentTarget,t)}),s.addEventListener("click",()=>{const r=new CustomEvent("play-request",{detail:{track:t,index:n,playlist:e}});window.dispatchEvent(r)})}))}
