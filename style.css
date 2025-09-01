@@ -1168,6 +1168,123 @@ button#createPlaylistBtn:hover {
       border-radius: 12px;
     }
 
+    .grid-container > .card {
+      min-width: 0;
+    }
+
+    .card {
+      padding: 10px;
+    }
+
+    .sidebar {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .sidebar.show {
+      position: fixed;
+      top: 56px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(92vw, 520px);
+      height: auto;
+      max-height: calc(100vh - 56px - 12px);
+      margin: 0 auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      overflow: auto;
+      z-index: 1000;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .playlists-detail-page,
+    .playlists-page,
+    .home-page,
+    .login-page,
+    .sign-up-page {
+      grid-template-columns: 1fr !important;
+    }
+
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+    }
+
+    .songs-list,
+    #search-results {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .song-item {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
+
+    .song-thumb img,
+    .song-thumb {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .song-info {
+      min-width: 0;
+    }
+
+    .song-menu {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .playlists-page .playlists {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    #player {
+      position: sticky;
+      bottom: 0;
+      width: 100%;
+      padding: 10px;
+      backdrop-filter: saturate(140%) blur(8px);
+    }
+
+    #player .controls {
+      gap: 8px;
+    }
+
+    #player .time,
+    #p-current,
+    #p-duration {
+      font-size: 12px;
+    }
+
+    #p-seek {
+      height: 6px;
+    }
+
+    .login-box,
+    .sign-up-box,
+    .login-page form,
+    .sign-up-page form,
+    .reset form {
+      width: min(92vw, 520px);
+      margin-inline: auto;
+      padding: 16px;
+      border-radius: 12px;
+    }
+
     input,
     select,
     textarea {
