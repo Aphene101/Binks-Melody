@@ -1229,12 +1229,13 @@ button#createPlaylistBtn:hover {
 
   .sidebar {
     position: fixed;
-    top: 56px;
+    top: 70px;
     right: -100%;
     bottom: 0;
     width: 100vw;
     height: auto;
     margin: 0;
+    margin-top: 0;
     border-radius: 0;
     border: none;
     background-color: #c2cdb3;
@@ -1350,12 +1351,15 @@ button#createPlaylistBtn:hover {
   }
 
   #player {
-    position: sticky;
+    position: fixed;
+    left: 0;
+    right: 0;
     bottom: 0;
     width: 100%;
     padding: 12px;
     height: auto;
-    backdrop-filter: saturate(140%) blur(8px);
+    z-index: 1200;
+    backdrop-filter: none;
   }
 
   #visualizer {
