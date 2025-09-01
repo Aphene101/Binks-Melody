@@ -765,6 +765,7 @@ button#createPlaylistBtn:hover {
   color: #f1f1f1;
   font-size: 1.2rem;
   user-select: none;
+  text-overflow: ellipsis;
 }
 
 .song-artist {
@@ -1146,6 +1147,8 @@ button#createPlaylistBtn:hover {
 
 .player.minimized #p-title {
   font-size: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .player.minimized #p-artist {
@@ -1406,6 +1409,9 @@ button#createPlaylistBtn:hover {
   #p-title {
     font-size: 16px;
     max-width: 100%;
+    width: 70vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   #p-artist {
