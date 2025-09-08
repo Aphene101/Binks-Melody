@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: reset.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: reset.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file reset.js
+ * Handles Firebase password reset flow:
+ *  - Validates reset link from email
+ *  - Updates user password
+ *  - Redirects to login on success
+ */
+
+import { auth } from "./firebase.js";
+import { verifyPasswordResetCode, confirmPasswordReset } from "firebase/auth";
+
+const statusEl = document.getElementById("reset-status");
+const form = document.getElementById("reset-form");
+const newPwInput = document.getElementById("new-password");
+
+/**
+ * Get query parameter value from current URL.
+ * @param {string} name - Parameter name
+ * @returns {string|null} The value or null if missing
+ */
+function qp(name) {
+  const url = new URL(window.location.href);
+  return url.searchParams.get(name);
+}
+
+const mode = qp("mode");
+const oobCode = qp("oobCode");
+
+/**
+ * Initialize password reset screen by validating the reset link.
+ * Displays the user’s email if valid, otherwise shows error.
+ * @returns {Promise&lt;void>}
+ */
+async function init() {
+  if (mode !== "resetPassword" || !oobCode) {
+    statusEl.textContent = "Invalid or malformed reset link.";
+    form.style.display = "none";
+    return;
+  }
+
+  try {
+    const email = await verifyPasswordResetCode(auth, oobCode);
+    statusEl.textContent = `Resetting password for ${email}`;
+    statusEl.classList.remove("error-message");
+  } catch (err) {
+    console.error(err);
+    statusEl.textContent = "This reset link is invalid or expired.";
+    form.style.display = "none";
+  }
+}
+
+/**
+ * Handle password reset form submit.
+ * Confirms new password with Firebase and redirects to login on success.
+ * @param {SubmitEvent} e
+ * @returns {Promise&lt;void>}
+ */
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const newPassword = newPwInput.value.trim();
+  if (!newPassword) return;
+
+  try {
+    await confirmPasswordReset(auth, oobCode, newPassword);
+    statusEl.textContent = "Password updated! Redirecting to login...";
+    statusEl.classList.remove("error-message");
+    setTimeout(() => {
+      window.location.href = import.meta.env.BASE_URL + "index.html";
+    }, 900);
+  } catch (err) {
+    console.error(err);
+    statusEl.textContent =
+      "Could not update password. Request a new reset email.";
+  }
+});
+
+init();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="window.html#event:play-request">play-request</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CLIENT_ID">CLIENT_ID</a></li><li><a href="global.html#audioCtx">audioCtx</a></li><li><a href="global.html#auth">auth</a></li><li><a href="global.html#createPlaylist">createPlaylist</a></li><li><a href="global.html#createStarterPlaylist">createStarterPlaylist</a></li><li><a href="global.html#currentIndex">currentIndex</a></li><li><a href="global.html#currentPlaylist">currentPlaylist</a></li><li><a href="global.html#currentPlaylistId">currentPlaylistId</a></li><li><a href="global.html#currentTrack">currentTrack</a></li><li><a href="global.html#currentUserId">currentUserId</a></li><li><a href="global.html#db">db</a></li><li><a href="global.html#displayResults">displayResults</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawVisualizer">drawVisualizer</a></li><li><a href="global.html#formatTime">formatTime</a></li><li><a href="global.html#getFriendlyErrorMessage">getFriendlyErrorMessage</a></li><li><a href="global.html#getTopTracksByTag">getTopTracksByTag</a></li><li><a href="global.html#handleAddToPlaylist">handleAddToPlaylist</a></li><li><a href="global.html#handleRemoveFromPlaylist">handleRemoveFromPlaylist</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initVisualizer">initVisualizer</a></li><li><a href="global.html#loadGenrePlaylist">loadGenrePlaylist</a></li><li><a href="global.html#loadPlaylist">loadPlaylist</a></li><li><a href="global.html#newPlaylistBtn">newPlaylistBtn</a></li><li><a href="global.html#openMorePopup">openMorePopup</a></li><li><a href="global.html#playTrack">playTrack</a></li><li><a href="global.html#playlistsContainer">playlistsContainer</a></li><li><a href="global.html#popupMenu">popupMenu</a></li><li><a href="global.html#qp">qp</a></li><li><a href="global.html#removeTrackFromPlaylist">removeTrackFromPlaylist</a></li><li><a href="global.html#renderPlaylists">renderPlaylists</a></li><li><a href="global.html#renderSongs">renderSongs</a></li><li><a href="global.html#resolveToEmail">resolveToEmail</a></li><li><a href="global.html#searchTracks">searchTracks</a></li><li><a href="global.html#songPopup">songPopup</a></li><li><a href="global.html#usernameDisplay">usernameDisplay</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Sep 08 2025 11:24:55 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

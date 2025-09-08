@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: firebase.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: firebase.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file firebase.js
+ * @description Firebase initialization and playlist helper utilities.
+ * Provides configured Auth and Firestore instances,
+ * and functions for creating starter and custom playlists.
+ */
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  setPersistence,
+  browserSessionPersistence,
+} from "firebase/auth";
+import { getFirestore, doc, setDoc, collection } from "firebase/firestore";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDPEZCaoUiyeHZI9uOu2Aq_8uaH_x09MtE",
+  authDomain: "binks-melody.firebaseapp.com",
+  projectId: "binks-melody",
+  storageBucket: "binks-melody.firebasestorage.app",
+  messagingSenderId: "493118106781",
+  appId: "1:493118106781:web:4fd0998f762a3923a97874",
+  measurementId: "G-497SCW2NVJ",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+/**
+ * Firebase Authentication instance.
+ * @type {import("firebase/auth").Auth}
+ */
+const auth = getAuth(app);
+
+/**
+ * Firestore database instance.
+ * @type {import("firebase/firestore").Firestore}
+ */
+const db = getFirestore(app);
+
+setPersistence(auth, browserSessionPersistence)
+  .then(() => {
+    console.log("Session persistence set");
+  })
+  .catch((err) => {
+    console.error("Persistence error:", err);
+  });
+
+export { auth, db };
+
+/**
+ * Creates a starter playlist for a newly registered user.
+ * @async
+ * @function createStarterPlaylist
+ * @param {string} userId - The UID of the Firebase Auth user.
+ * @returns {Promise&lt;void>} Resolves when the playlist is created.
+ */
+export async function createStarterPlaylist(userId) {
+  const ref = doc(collection(db, "users", userId, "playlists"));
+
+  await setDoc(ref, {
+    name: "My First Playlist",
+    songs: [],
+  });
+}
+
+/**
+ * Creates a new custom playlist for a user.
+ * @async
+ * @function createPlaylist
+ * @param {string} userId - The UID of the Firebase Auth user.
+ * @param {string} playlistName - The name of the playlist.
+ * @returns {Promise&lt;void>} Resolves when the playlist is created.
+ */
+export async function createPlaylist(userId, playlistName) {
+  const playlistRef = doc(collection(db, "users", userId, "playlists"));
+
+  try {
+    await setDoc(playlistRef, {
+      name: playlistName,
+      songs: [],
+    });
+
+    console.log("Playlist created:", playlistName);
+  } catch (error) {
+    console.error("Error creating playlist:", error);
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="window.html#event:play-request">play-request</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CLIENT_ID">CLIENT_ID</a></li><li><a href="global.html#audioCtx">audioCtx</a></li><li><a href="global.html#auth">auth</a></li><li><a href="global.html#createPlaylist">createPlaylist</a></li><li><a href="global.html#createStarterPlaylist">createStarterPlaylist</a></li><li><a href="global.html#currentIndex">currentIndex</a></li><li><a href="global.html#currentPlaylist">currentPlaylist</a></li><li><a href="global.html#currentPlaylistId">currentPlaylistId</a></li><li><a href="global.html#currentTrack">currentTrack</a></li><li><a href="global.html#currentUserId">currentUserId</a></li><li><a href="global.html#db">db</a></li><li><a href="global.html#displayResults">displayResults</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawVisualizer">drawVisualizer</a></li><li><a href="global.html#formatTime">formatTime</a></li><li><a href="global.html#getFriendlyErrorMessage">getFriendlyErrorMessage</a></li><li><a href="global.html#getTopTracksByTag">getTopTracksByTag</a></li><li><a href="global.html#handleAddToPlaylist">handleAddToPlaylist</a></li><li><a href="global.html#handleRemoveFromPlaylist">handleRemoveFromPlaylist</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initVisualizer">initVisualizer</a></li><li><a href="global.html#loadGenrePlaylist">loadGenrePlaylist</a></li><li><a href="global.html#loadPlaylist">loadPlaylist</a></li><li><a href="global.html#newPlaylistBtn">newPlaylistBtn</a></li><li><a href="global.html#openMorePopup">openMorePopup</a></li><li><a href="global.html#playTrack">playTrack</a></li><li><a href="global.html#playlistsContainer">playlistsContainer</a></li><li><a href="global.html#popupMenu">popupMenu</a></li><li><a href="global.html#qp">qp</a></li><li><a href="global.html#removeTrackFromPlaylist">removeTrackFromPlaylist</a></li><li><a href="global.html#renderPlaylists">renderPlaylists</a></li><li><a href="global.html#renderSongs">renderSongs</a></li><li><a href="global.html#resolveToEmail">resolveToEmail</a></li><li><a href="global.html#searchTracks">searchTracks</a></li><li><a href="global.html#songPopup">songPopup</a></li><li><a href="global.html#usernameDisplay">usernameDisplay</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Sep 08 2025 11:24:55 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

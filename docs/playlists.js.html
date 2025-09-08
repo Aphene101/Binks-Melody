@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: playlists.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: playlists.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @file playlists.js
  * @description Handles rendering of the user's playlist library,
  * as well as renaming and deleting playlists. Provides a contextual
@@ -33,15 +61,15 @@ const newPlaylistBtn = document.getElementById("newPlaylistBtn") || null;
 const popupMenu = document.createElement("div");
 popupMenu.className = "playlist-popup hidden";
 popupMenu.innerHTML = `
-  <div class="popup-item" id="renameBtn">
-    <img src="${import.meta.env.BASE_URL}Media/Rename-icon.svg" alt="Rename">
-    <span>Rename</span>
-  </div>
-  <hr>
-  <div class="popup-item" id="deleteBtn">
-    <img src="${import.meta.env.BASE_URL}Media/Delete-Icon.svg" alt="Delete">
-    <span>Delete</span>
-  </div>
+  &lt;div class="popup-item" id="renameBtn">
+    &lt;img src="${import.meta.env.BASE_URL}Media/Rename-icon.svg" alt="Rename">
+    &lt;span>Rename&lt;/span>
+  &lt;/div>
+  &lt;hr>
+  &lt;div class="popup-item" id="deleteBtn">
+    &lt;img src="${import.meta.env.BASE_URL}Media/Delete-Icon.svg" alt="Delete">
+    &lt;span>Delete&lt;/span>
+  &lt;/div>
 `;
 document.body.appendChild(popupMenu);
 
@@ -57,7 +85,7 @@ let currentPlaylistId = null;
  * and wires click events for navigation and popup menu actions.
  *
  * @async
- * @returns {Promise<void>}
+ * @returns {Promise&lt;void>}
  */
 async function renderPlaylists() {
   if (!playlistsContainer || !newPlaylistBtn) return;
@@ -74,11 +102,11 @@ async function renderPlaylists() {
     playlistDiv.className = "playlist";
 
     playlistDiv.innerHTML = `
-      <div class="pl-icon"></div>
-      <p>${data.name}</p>
-      <span class="more-icon"><img src="${
+      &lt;div class="pl-icon">&lt;/div>
+      &lt;p>${data.name}&lt;/p>
+      &lt;span class="more-icon">&lt;img src="${
         import.meta.env.BASE_URL
-      }Media/More-icon.svg"></span>
+      }Media/More-icon.svg">&lt;/span>
     `;
 
     // Show first song’s cover art if available
@@ -188,3 +216,26 @@ auth.onAuthStateChanged((user) => {
     renderPlaylists();
   }
 });
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="window.html#event:play-request">play-request</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CLIENT_ID">CLIENT_ID</a></li><li><a href="global.html#audioCtx">audioCtx</a></li><li><a href="global.html#auth">auth</a></li><li><a href="global.html#createPlaylist">createPlaylist</a></li><li><a href="global.html#createStarterPlaylist">createStarterPlaylist</a></li><li><a href="global.html#currentIndex">currentIndex</a></li><li><a href="global.html#currentPlaylist">currentPlaylist</a></li><li><a href="global.html#currentPlaylistId">currentPlaylistId</a></li><li><a href="global.html#currentTrack">currentTrack</a></li><li><a href="global.html#currentUserId">currentUserId</a></li><li><a href="global.html#db">db</a></li><li><a href="global.html#displayResults">displayResults</a></li><li><a href="global.html#drawBar">drawBar</a></li><li><a href="global.html#drawVisualizer">drawVisualizer</a></li><li><a href="global.html#formatTime">formatTime</a></li><li><a href="global.html#getFriendlyErrorMessage">getFriendlyErrorMessage</a></li><li><a href="global.html#getTopTracksByTag">getTopTracksByTag</a></li><li><a href="global.html#handleAddToPlaylist">handleAddToPlaylist</a></li><li><a href="global.html#handleRemoveFromPlaylist">handleRemoveFromPlaylist</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initVisualizer">initVisualizer</a></li><li><a href="global.html#loadGenrePlaylist">loadGenrePlaylist</a></li><li><a href="global.html#loadPlaylist">loadPlaylist</a></li><li><a href="global.html#newPlaylistBtn">newPlaylistBtn</a></li><li><a href="global.html#openMorePopup">openMorePopup</a></li><li><a href="global.html#playTrack">playTrack</a></li><li><a href="global.html#playlistsContainer">playlistsContainer</a></li><li><a href="global.html#popupMenu">popupMenu</a></li><li><a href="global.html#qp">qp</a></li><li><a href="global.html#removeTrackFromPlaylist">removeTrackFromPlaylist</a></li><li><a href="global.html#renderPlaylists">renderPlaylists</a></li><li><a href="global.html#renderSongs">renderSongs</a></li><li><a href="global.html#resolveToEmail">resolveToEmail</a></li><li><a href="global.html#searchTracks">searchTracks</a></li><li><a href="global.html#songPopup">songPopup</a></li><li><a href="global.html#usernameDisplay">usernameDisplay</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Sep 08 2025 11:24:55 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
