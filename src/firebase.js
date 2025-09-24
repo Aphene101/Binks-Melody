@@ -28,6 +28,8 @@ const firebaseConfig = {
   measurementId: "G-497SCW2NVJ",
 };
 
+export const firebaseProjectId = firebaseConfig.projectId;
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 

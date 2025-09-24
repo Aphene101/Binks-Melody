@@ -11,6 +11,7 @@ export default defineConfig({
         playlist: "playlist.html",
         signup: "signup.html",
         reset: "reset.html",
+        action: "action.html",
       },
     },
   },
