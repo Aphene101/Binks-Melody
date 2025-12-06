@@ -302,11 +302,37 @@ async function handleAddToPlaylist() {
 
   chooser.classList.add("show");
 
-  setTimeout(() => {
-    document.addEventListener("click", () => slideOutAndRemove(chooser), {
-      once: true,
-    });
-  }, 0);
+  document.body.appendChild(chooser);
+  chooser.classList.add("show");
+
+  chooser.addEventListener("click", (ev) => ev.stopPropagation());
+
+  const outsideClickHandler = (ev) => {
+    if (!chooser.contains(ev.target)) {
+      slideOutAndRemove(chooser);
+      document.removeEventListener("click", outsideClickHandler);
+    }
+  };
+
+  document.addEventListener("click", outsideClickHandler);
+
+  /**
+   * Animate out and remove the chooser.
+   * This version also removes the outsideClickHandler to avoid leaks.
+   * @param {HTMLElement} element
+   */
+  function slideOutAndRemove(element) {
+    element.classList.remove("show");
+    element.classList.add("hide");
+
+    const onAnimEnd = () => {
+      element.removeEventListener("animationend", onAnimEnd);
+      document.removeEventListener("click", outsideClickHandler);
+      element.remove();
+    };
+
+    element.addEventListener("animationend", onAnimEnd, { once: true });
+  }
 }
 
 /**
